@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Juan Pablo González — Médico General · Nuevo Laredo</title>
+<meta name="description" content="Atención médica cercana y personalizada. Especialista en Diabetes y Obesidad. Nuevo Laredo, Tamps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0e2a3a;--teal:#1a7a6e;--teal-light:#e8f5f3;--teal-mid:#2da898;
+  --warm:#f7f4ef;--text:#1c1c1c;--muted:#5a6a72;--white:#fff;
+  --border:rgba(26,122,110,0.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Lora',serif;font-size:19px;color:var(--navy);font-weight:600;text-decoration:none}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--teal)!important;color:white!important;padding:9px 22px;border-radius:100px;font-weight:500!important}
+.nav-cta:hover{background:var(--navy)!important}
+
+/* TICKER */
+.ticker{background:var(--teal);color:white;padding:10px 0;overflow:hidden;white-space:nowrap;margin-top:64px}
+.ticker-track{display:inline-flex;animation:ticker 22s linear infinite}
+.ticker-item{font-size:13px;font-weight:400;padding:0 32px;display:inline-flex;align-items:center;gap:10px}
+.ticker-dot{width:5px;height:5px;background:rgba(255,255,255,0.5);border-radius:50%;flex-shrink:0}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:72px 6% 80px;background:var(--warm);min-height:92vh;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-5%;top:-15%;width:55%;height:130%;background:radial-gradient(ellipse,rgba(45,168,152,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-text{z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:var(--teal-light);color:var(--teal);font-size:12px;font-weight:500;padding:5px 14px;border-radius:100px;margin-bottom:24px;border:1px solid rgba(26,122,110,0.2);letter-spacing:.3px}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%}
+.hero h1{font-family:'Lora',serif;font-size:clamp(38px,4.5vw,58px);line-height:1.1;color:var(--navy);font-weight:600;margin-bottom:6px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero-role{font-size:17px;color:var(--muted);font-weight:300;margin-bottom:20px}
+.hero-desc{font-size:16px;color:var(--muted);line-height:1.75;max-width:440px;margin-bottom:32px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;padding:13px 26px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-p:hover{background:var(--navy);transform:translateY(-1px)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);padding:13px 26px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid rgba(14,42,58,0.3);transition:all .2s}
+.btn-s:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--white)}
+.hero-stat{padding:18px 20px;text-align:center;border-right:1px solid var(--border)}
+.hero-stat:last-child{border-right:none}
+.stat-n{font-family:'Lora',serif;font-size:26px;font-weight:600;color:var(--navy);display:block;line-height:1}
+.stat-l{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
+.hero-image{display:flex;justify-content:center;align-items:flex-end;position:relative;z-index:1}
+.hero-img-frame{position:relative;width:360px}
+.hero-img-blob{position:absolute;inset:0;background:linear-gradient(140deg,var(--teal-light),rgba(26,122,110,0.1));border-radius:42% 58% 55% 45%/48% 52% 48% 52%}
+.hero-img-frame img{position:relative;width:100%;height:480px;object-fit:cover;object-position:top center;border-radius:28px;filter:drop-shadow(0 24px 48px rgba(14,42,58,0.14))}
+
+/* SECCIÓN BASE */
+.sec{padding:80px 6%}
+.sl{font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.st{font-family:'Lora',serif;font-size:clamp(26px,3vw,38px);color:var(--navy);line-height:1.2;margin-bottom:14px}
+.sd{font-size:16px;color:var(--muted);max-width:540px;line-height:1.7;font-weight:300}
+
+/* MÉTRICAS */
+.metrics{background:var(--navy)}
+.metrics .sl{color:var(--teal-mid)}
+.metrics .st{color:white}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;margin-top:48px}
+.metric-item{background:var(--navy);padding:36px 28px;text-align:center}
+.metric-num{font-family:'Lora',serif;font-size:44px;font-weight:600;color:var(--teal-mid);display:block;line-height:1;margin-bottom:8px}
+.metric-label{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.5;font-weight:300}
+
+/* POR QUÉ */
+.why{background:var(--white)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:52px}
+.why-points{display:flex;flex-direction:column;gap:28px}
+.why-point{display:flex;gap:18px;align-items:flex-start;padding:20px;border:1px solid var(--border);border-radius:16px;transition:border-color .2s}
+.why-point:hover{border-color:rgba(26,122,110,0.3)}
+.wi{width:46px;height:46px;background:var(--teal-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.why-point h3{font-family:'Lora',serif;font-size:17px;color:var(--navy);margin-bottom:5px;font-weight:600}
+.why-point p{font-size:14px;color:var(--muted);line-height:1.6;font-weight:300}
+.why-img-wrap{border-radius:24px;overflow:hidden;aspect-ratio:3/4;position:relative;background:var(--teal-light)}
+.why-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.why-badge{position:absolute;bottom:20px;left:16px;right:16px;background:rgba(255,255,255,0.96);border-radius:14px;padding:14px 18px}
+.why-badge-t{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.why-badge-s{font-size:12px;color:var(--muted)}
+
+/* SERVICIOS */
+.services{background:var(--warm)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:48px}
+.svc-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:26px 22px;transition:all .25s}
+.svc-card:hover{transform:translateY(-3px);border-color:rgba(26,122,110,0.3);box-shadow:0 10px 28px rgba(26,122,110,0.09)}
+.svc-icon{font-size:28px;margin-bottom:14px;display:block}
+.svc-card h3{font-family:'Lora',serif;font-size:16px;color:var(--navy);margin-bottom:7px;font-weight:600}
+.svc-card p{font-size:13px;color:var(--muted);line-height:1.55;font-weight:300}
+
+/* PROCESO */
+.proceso{background:var(--white)}
+.proceso-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:52px}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--teal-light);color:var(--teal);font-family:'Lora',serif;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step h3{font-family:'Lora',serif;font-size:17px;color:var(--navy);margin-bottom:5px;font-weight:600}
+.step p{font-size:14px;color:var(--muted);line-height:1.6;font-weight:300}
+.proceso-cta{background:var(--warm);border-radius:24px;padding:36px;border:1px solid var(--border);display:flex;flex-direction:column;gap:20px}
+.proceso-cta h3{font-family:'Lora',serif;font-size:22px;color:var(--navy)}
+.proceso-cta p{font-size:15px;color:var(--muted);line-height:1.65;font-weight:300}
+.h-row{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;border-bottom:1px solid var(--border)}
+.h-row:last-child{border-bottom:none}
+.h-d{color:var(--muted)}.h-h{color:var(--navy);font-weight:500}
+.h-tag{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:11px;padding:2px 8px;border-radius:100px;font-weight:500;margin-top:6px}
+.cta-btns{display:flex;flex-direction:column;gap:10px}
+.btn-wa{display:flex;align-items:center;gap:10px;background:#25d366;color:white;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-wa:hover{background:#1eba57}
+.btn-ag{display:flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-ag:hover{background:var(--navy)}
+.btn-map{display:flex;align-items:center;gap:10px;color:var(--navy);padding:13px 22px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-map:hover{border-color:var(--teal);color:var(--teal)}
+
+/* TESTIMONIOS */
+.testi{background:var(--navy)}
+.testi .sl{color:var(--teal-mid)}
+.testi .st{color:white}
+.testi .sd{color:rgba(255,255,255,0.55)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.tcard{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;gap:14px}
+.tc-top{display:flex;align-items:center;gap:12px}
+.tc-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;flex-shrink:0;color:white}
+.av-d{background:#2d6a4f}.av-s{background:#c0392b}.av-j{background:#5c6bc0}
+.tc-name{font-size:14px;font-weight:500;color:white}
+.tc-src{font-size:11px;color:rgba(255,255,255,0.35)}
+.tc-stars{color:#f0b429;font-size:13px;letter-spacing:2px}
+.tcard blockquote{font-family:'Lora',serif;font-size:15px;color:rgba(255,255,255,0.8);line-height:1.65;font-style:italic;flex:1}
+.tc-badge{font-size:11px;color:rgba(255,255,255,0.25)}
+
+/* FAQ */
+.faq{background:var(--warm)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 22px}
+.faq-q{font-family:'Lora',serif;font-size:15px;color:var(--navy);font-weight:600;margin-bottom:10px}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* BLOG */
+.blog{background:var(--white)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.bcard{border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .25s;background:var(--white)}
+.bcard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(14,42,58,0.07)}
+.bthumb{height:148px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative}
+.btag-wrap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(14,42,58,0.45));padding:16px 14px 10px}
+.btag{display:inline-block;background:var(--teal);color:white;font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px}
+.bbody{padding:18px}
+.bbody h3{font-family:'Lora',serif;font-size:15px;color:var(--navy);line-height:1.4;margin-bottom:7px;font-weight:600}
+.bbody p{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300;margin-bottom:12px}
+.bmeta{font-size:11px;color:var(--teal);font-weight:500}
+
+/* CTA BAND */
+.cta-band{background:var(--teal);padding:56px 6%;text-align:center}
+.cta-band h2{font-family:'Lora',serif;font-size:clamp(26px,3vw,36px);color:white;margin-bottom:12px}
+.cta-band p{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:28px;font-weight:300}
+.cta-band-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--teal);padding:13px 28px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-white:hover{background:var(--navy);color:white}
+.btn-outline-w{display:inline-flex;align-items:center;gap:8px;background:transparent;color:white;padding:13px 28px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid rgba(255,255,255,0.45);transition:all .2s}
+.btn-outline-w:hover{background:white;color:var(--teal)}
+
+/* CONTACTO */
+.contact{background:var(--warm)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:52px}
+.cinfo{display:flex;flex-direction:column;gap:22px}
+.citem{display:flex;gap:16px;align-items:flex-start}
+.cicon{width:44px;height:44px;background:var(--teal-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.citem h4{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.citem p,.citem a{font-size:15px;color:var(--navy);text-decoration:none;line-height:1.55}
+.citem a:hover{color:var(--teal)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:48px 6% 24px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-logo{font-family:'Lora',serif;font-size:20px;color:white;font-weight:600;margin-bottom:10px}
+.footer-logo span{color:var(--teal-mid)}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;font-weight:300}
+.footer-col h4{font-size:12px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:var(--teal-mid)}
+.footer-social{display:flex;gap:10px;margin-top:16px}
+.fsoc{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px;transition:all .2s}
+.fsoc:hover{background:var(--teal);border-color:var(--teal);color:white}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-aviso{font-size:11px;color:rgba(255,255,255,0.18);max-width:600px;line-height:1.5;text-align:right}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:40px 5% 60px;min-height:auto;gap:40px}
+  .hero-image{order:-1}
+  .hero-img-frame{width:280px}
+  .hero-img-frame img{height:360px}
+  .why-grid,.proceso-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .metrics-grid,.testi-grid,.blog-grid{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Dr. Juan Pablo <span>González</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Sobre mí</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">Preguntas</a></li>
+    <li><a href="#contact" class="nav-cta">Agendar cita</a></li>
+  </ul>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Medicina General</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Control de Diabetes</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tratamiento de Obesidad</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Miembro Sociedad Mexicana de Obesidad</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Medicina Preventiva</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>+8 años de experiencia</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Solo con cita previa</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nuevo Laredo, Tamps.</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Medicina General</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Control de Diabetes</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tratamiento de Obesidad</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Miembro Sociedad Mexicana de Obesidad</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Medicina Preventiva</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>+8 años de experiencia</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Solo con cita previa</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nuevo Laredo, Tamps.</span>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-tag">Médico General · Nuevo Laredo</div>
+    <h1>Obesidad, <em>Diabetes</em><br>y Salud General</h1>
+    <p class="hero-role">Dr. Juan Pablo González — Médico General</p>
+    <p class="hero-desc">Cuidar tu salud no debería ser complicado. Aquí encuentras atención médica profesional, explicada con calma, respeto y sin prisas.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/528672660175" class="btn-p">📱 Agenda por WhatsApp</a>
+      <a href="https://app.nimbo-x.com/c/DocPablo" class="btn-s">📅 Cita en línea</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="stat-n">8+</span><span class="stat-l">Años de experiencia</span></div>
+      <div class="hero-stat"><span class="stat-n">SMO</span><span class="stat-l">Miembro certificado</span></div>
+      <div class="hero-stat"><span class="stat-n">100%</span><span class="stat-l">Atención personalizada</span></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-img-frame">
+      <div class="hero-img-blob"></div>
+      <!-- REEMPLAZA ESTA URL CON TU FOTO SUBIDA A FRAMER O CDN -->
+      <img src="foto-dr-pablo.jpg" alt="Dr. Juan Pablo González">
+    </div>
+  </div>
+</section>
+
+<section class="metrics sec" id="metrics">
+  <div class="sl">Resultados</div>
+  <h2 class="st">Compromiso con cada paciente</h2>
+  <div class="metrics-grid">
+    <div class="metric-item"><span class="metric-num">8+</span><div class="metric-label">Años dedicados a la medicina general y atención de enfermedades crónicas</div></div>
+    <div class="metric-item"><span class="metric-num">★★★★★</span><div class="metric-label">Calificación de 5 estrellas en Google por parte de pacientes reales</div></div>
+    <div class="metric-item"><span class="metric-num">SMO</span><div class="metric-label">Miembro activo de la Sociedad Mexicana de Obesidad</div></div>
+  </div>
+</section>
+
+<section class="why sec" id="why">
+  <div class="sl">Mi enfoque</div>
+  <h2 class="st">¿Por qué confiarme tu salud?</h2>
+  <p class="sd">Porque atender síntomas es solo el principio. Mi compromiso va mucho más allá de la consulta.</p>
+  <div class="why-grid">
+    <div class="why-points">
+      <div class="why-point"><div class="wi">🎧</div><div><h3>Te escucho primero</h3><p>La consulta comienza entendiéndote a ti, tu historia y lo que estás viviendo. Sin prisas, sin interrupciones.</p></div></div>
+      <div class="why-point"><div class="wi">💡</div><div><h3>Te explico con claridad</h3><p>Te digo exactamente qué ocurre en tu cuerpo, tu diagnóstico y tratamiento — en palabras que tengan sentido para ti.</p></div></div>
+      <div class="why-point"><div class="wi">🤝</div><div><h3>Te acompaño en el proceso</h3><p>No estás solo. Resuelvo tus dudas y estoy contigo en cada paso de tu atención médica.</p></div></div>
+      <blockquote style="border-left:3px solid var(--teal);padding-left:18px;font-family:'Lora',serif;font-size:16px;color:var(--muted);font-style:italic;line-height:1.65">"No creo en culpar al paciente. Creo en explicar, acompañar y tratar la enfermedad con respeto."</blockquote>
+    </div>
+    <div class="why-img-wrap">
+      <!-- REEMPLAZA ESTA URL CON TU FOTO SUBIDA A FRAMER O CDN -->
+      <img src="foto-dr-pablo.jpg" alt="Dr. Pablo González">
+      <div class="why-badge"><div class="why-badge-t">Miembro activo — Sociedad Mexicana de Obesidad</div><div class="why-badge-s">Médico General · Más de 8 años de experiencia</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services sec" id="services">
+  <div class="sl">Lo que ofrezco</div>
+  <h2 class="st">Servicios médicos</h2>
+  <p class="sd">Atención integral con enfoque especial en enfermedades crónicas y bienestar a largo plazo.</p>
+  <div class="svc-grid">
+    <div class="svc-card"><span class="svc-icon">🩺</span><h3>Consulta general</h3><p>Diagnóstico y tratamiento de enfermedades agudas y crónicas con atención personalizada.</p></div>
+    <div class="svc-card"><span class="svc-icon">🩸</span><h3>Control de diabetes</h3><p>Manejo integral de diabetes tipo 1 y 2, seguimiento de glucosa y plan de tratamiento.</p></div>
+    <div class="svc-card"><span class="svc-icon">⚖️</span><h3>Tratamiento de obesidad</h3><p>Plan personalizado con enfoque médico, nutricional y conductual sostenible.</p></div>
+    <div class="svc-card"><span class="svc-icon">❤️</span><h3>Medicina preventiva</h3><p>Chequeos, laboratorios y orientación para mantener tu salud en óptimas condiciones.</p></div>
+  </div>
+</section>
+
+<section class="proceso sec" id="proceso">
+  <div class="sl">Cómo funciona</div>
+  <h2 class="st">¿Cómo agendar tu consulta?</h2>
+  <p class="sd">Un proceso simple y profesional, pensado para que avances con seguridad desde el primer contacto.</p>
+  <div class="proceso-grid">
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div><h3>Agenda tu cita</h3><p>Escríbeme por WhatsApp al 867 266 0175 o usa el sistema de citas en línea y elige el horario que mejor te acomode.</p></div></div>
+      <div class="step"><div class="step-num">02</div><div><h3>Valoración médica</h3><p>Realizo una evaluación completa de tu historial, síntomas y estudios previos para entender tu caso a fondo.</p></div></div>
+      <div class="step"><div class="step-num">03</div><div><h3>Diagnóstico y plan</h3><p>Te explico con claridad qué está pasando y diseñamos juntos un plan de tratamiento realista y adaptado a ti.</p></div></div>
+      <div class="step"><div class="step-num">04</div><div><h3>Seguimiento continuo</h3><p>No te dejo solo. Doy seguimiento a tu evolución y ajustamos el tratamiento según tu respuesta y estilo de vida.</p></div></div>
+    </div>
+    <div class="proceso-cta">
+      <h3>¿Listo para tu consulta?</h3>
+      <p>Agenda de forma rápida por WhatsApp o usa el sistema de citas en línea. Atención de lunes a sábado, solo con cita previa.</p>
+      <div style="background:var(--white);border-radius:12px;padding:14px 16px;border:1px solid var(--border)">
+        <div class="h-row"><span class="h-d">Lunes — Viernes</span><span class="h-h">9:00 — 19:00</span></div>
+        <div class="h-row"><span class="h-d">Sábado</span><span class="h-h">9:00 — 14:00</span></div>
+        <div class="h-row"><span class="h-d">Domingo</span><span class="h-h" style="color:var(--muted)">Cerrado</span></div>
+        <span class="h-tag">Solo con cita previa</span>
+      </div>
+      <div class="cta-btns">
+        <a href="https://wa.me/528672660175" class="btn-wa">📱 Escribir por WhatsApp</a>
+        <a href="https://app.nimbo-x.com/c/DocPablo" class="btn-ag">📅 Agendar en línea</a>
+        <a href="https://maps.app.goo.gl/3Y1Ai7AEKrk2mSxp7" class="btn-map">🗺 Cómo llegar al consultorio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi sec" id="testimonials">
+  <div class="sl">Pacientes reales</div>
+  <h2 class="st">Lo que dicen mis pacientes</h2>
+  <p class="sd">Opiniones verificadas de Google. La confianza se construye consulta a consulta.</p>
+  <div class="testi-grid">
+    <div class="tcard"><div class="tc-top"><div class="tc-av av-d">D</div><div><div class="tc-name">Dagoberto Alejandro</div><div class="tc-src">Reseña de Google</div></div></div><div class="tc-stars">★★★★★</div><blockquote>"Excelente doctor, me dio mucha confianza en mi primera consulta. Me sentí muy bien atendido desde el primer momento."</blockquote><div class="tc-badge">Verificado en Google · Hace 2 semanas</div></div>
+    <div class="tcard"><div class="tc-top"><div class="tc-av av-s">S</div><div><div class="tc-name">Susy Ramírez</div><div class="tc-src">Local Guide · Google</div></div></div><div class="tc-stars">★★★★★</div><blockquote>"Muy recomendado, un excelente doctor y ser humano. Con solo una cita nos dio instrucciones claras y un plan completo."</blockquote><div class="tc-badge">Verificado en Google · Hace 6 semanas</div></div>
+    <div class="tcard"><div class="tc-top"><div class="tc-av av-j">J</div><div><div class="tc-name">Jessica Berrones</div><div class="tc-src">Reseña de Google</div></div></div><div class="tc-stars">★★★★★</div><blockquote>"Resolvió todas mis dudas amablemente y el seguimiento por mensaje es muy bueno. Sigo en tratamiento pero lo recomiendo ampliamente."</blockquote><div class="tc-badge">Verificado en Google · Hace 13 semanas</div></div>
+  </div>
+</section>
+
+<section class="faq sec" id="faq">
+  <div class="sl">Dudas frecuentes</div>
+  <h2 class="st">Preguntas frecuentes</h2>
+  <p class="sd">Las preguntas más comunes que me hacen mis pacientes antes de su primera consulta.</p>
+  <div class="faq-grid">
+    <div class="faq-item"><div class="faq-q">¿La consulta es presencial o en línea?</div><div class="faq-a">La consulta es presencial en el consultorio ubicado en Baja California 3431, Col. Jardín, Nuevo Laredo. También puedes coordinar opciones de seguimiento por mensaje.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Qué debo llevar a mi primera consulta?</div><div class="faq-a">Si tienes estudios de laboratorio o historial médico previo, tráelos. No es indispensable, pero facilita mucho la evaluación inicial.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Atiende niños y adultos?</div><div class="faq-a">Sí, como médico general atiendo pacientes de todas las edades. El enfoque principal en enfermedades crónicas como diabetes y obesidad es para adultos.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Cómo puedo agendar mi cita?</div><div class="faq-a">Por WhatsApp al 867 266 0175 o usando el sistema de citas en línea disponible en este sitio. Respondemos a la brevedad con horarios disponibles.</div></div>
+    <div class="faq-item"><div class="faq-q">¿El doctor da seguimiento entre consultas?</div><div class="faq-a">Sí. El seguimiento por mensaje es parte del servicio, especialmente para pacientes en tratamiento de enfermedades crónicas como diabetes y obesidad.</div></div>
+    <div class="faq-item"><div class="faq-q">¿En qué se especializa principalmente?</div><div class="faq-a">Medicina general con enfoque especial en diabetes, obesidad y síndrome metabólico. Es miembro activo de la Sociedad Mexicana de Obesidad.</div></div>
+  </div>
+</section>
+
+<section class="blog sec" id="blog">
+  <div class="sl">Aprende con el Dr. Juan Pablo González</div>
+  <h2 class="st">Blog de salud</h2>
+  <p class="sd">Información médica confiable, en lenguaje claro. Sin tecnicismos, sin mitos.</p>
+  <div class="blog-grid">
+    <div class="bcard"><div class="bthumb">🩸<div class="btag-wrap"><span class="btag">Diabetes</span></div></div><div class="bbody"><h3>¿Cuándo debo revisar mi glucosa en ayunas?</h3><p>Todo lo que necesitas saber sobre el monitoreo de azúcar y qué significan tus resultados.</p><span class="bmeta">5 min de lectura →</span></div></div>
+    <div class="bcard"><div class="bthumb">⚖️<div class="btag-wrap"><span class="btag">Obesidad</span></div></div><div class="bbody"><h3>La diferencia entre perder peso y perder grasa</h3><p>No es lo mismo bajar kilos que mejorar tu composición corporal. Te explico por qué importa.</p><span class="bmeta">7 min de lectura →</span></div></div>
+    <div class="bcard"><div class="bthumb">🏃<div class="btag-wrap"><span class="btag">Prevención</span></div></div><div class="bbody"><h3>Los 5 análisis que debes hacerte cada año</h3><p>Una guía simple de laboratorios básicos de seguimiento que no deberías saltarte.</p><span class="bmeta">4 min de lectura →</span></div></div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>¿Listo para iniciar tu <em>tratamiento</em>?</h2>
+  <p>Agenda hoy tu consulta con el Dr. Juan Pablo González. Atención personalizada, sin prisas y con seguimiento real desde el primer día.</p>
+  <div class="cta-band-btns">
+    <a href="https://wa.me/528672660175" class="btn-white">📱 Agendar por WhatsApp</a>
+    <a href="https://app.nimbo-x.com/c/DocPablo" class="btn-outline-w">📅 Cita en línea</a>
+  </div>
+</div>
+
+<section class="contact sec" id="contact">
+  <div class="sl">Encuéntrame</div>
+  <h2 class="st">Datos del consultorio</h2>
+  <p class="sd">En Nuevo Laredo, Tamaulipas. Contáctame por el canal que prefieras.</p>
+  <div class="contact-grid">
+    <div class="cinfo">
+      <div class="citem"><div class="cicon">📍</div><div><h4>Dirección</h4><p>Baja California 3431, Col. Jardín<br>Nuevo Laredo, Tamps. 88260</p></div></div>
+      <div class="citem"><div class="cicon">📞</div><div><h4>Teléfono</h4><a href="tel:528672660175">867 266 0175</a></div></div>
+      <div class="citem"><div class="cicon">✉️</div><div><h4>Correo</h4><a href="mailto:contacto@docpablo.com">contacto@docpablo.com</a></div></div>
+      <div class="citem"><div class="cicon">🕐</div><div><h4>Horarios</h4>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:4px">
+          <div class="h-row"><span class="h-d">Lunes — Viernes</span><span class="h-h">9:00 — 19:00</span></div>
+          <div class="h-row"><span class="h-d">Sábado</span><span class="h-h">9:00 — 14:00</span></div>
+          <div class="h-row"><span class="h-d">Domingo</span><span class="h-h" style="color:var(--muted)">Cerrado</span></div>
+          <span class="h-tag">Solo con cita previa</span>
+        </div>
+      </div></div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:24px;padding:36px">
+      <h3 style="font-family:'Lora',serif;font-size:22px;color:var(--navy);margin-bottom:10px">¿Listo para tu consulta?</h3>
+      <p style="font-size:15px;color:var(--muted);line-height:1.65;font-weight:300;margin-bottom:22px">Agenda de forma rápida por WhatsApp o usa el sistema de citas en línea para elegir el horario que más te convenga.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/528672660175" class="btn-wa">📱 Escribir por WhatsApp</a>
+        <a href="https://app.nimbo-x.com/c/DocPablo" class="btn-ag">📅 Agendar en línea</a>
+        <a href="https://maps.app.goo.gl/3Y1Ai7AEKrk2mSxp7" class="btn-map">🗺 Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Dr. Juan Pablo <span>González</span></div>
+      <p class="footer-desc">Dr. Juan Pablo González — Médico General con más de 8 años de experiencia. Manejo de obesidad, diabetes y enfermedades metabólicas con atención personalizada en Nuevo Laredo, Tamps.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/528672660175" class="fsoc">📱</a>
+        <a href="https://www.tiktok.com/@docpablog" class="fsoc">🎵</a>
+        <a href="https://www.facebook.com/DrJPabloGonzalez" class="fsoc" style="font-weight:700;font-size:13px">f</a>
+        <a href="https://www.instagram.com/docpablog" class="fsoc">📷</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <a href="#why">Sobre mí</a>
+      <a href="#services">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#blog">Blog</a>
+      <a href="#faq">Preguntas frecuentes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:528672660175">867 266 0175</a>
+      <a href="https://wa.me/528672660175">WhatsApp</a>
+      <a href="https://app.nimbo-x.com/c/DocPablo">Agenda en línea</a>
+      <a href="https://maps.app.goo.gl/3Y1Ai7AEKrk2mSxp7">Cómo llegar</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Dr. Juan Pablo González · Medicina General · Nuevo Laredo, Tamps.</div>
+    <div class="footer-aviso">Información con fines orientativos. No sustituye la consulta médica. Los resultados pueden variar según cada paciente.</div>
+  </div>
+</footer>
+
+</body>
+</html>

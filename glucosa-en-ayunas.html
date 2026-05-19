@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cuándo debo revisar mi glucosa en ayunas? — DocPablo</title>
+<meta name="description" content="Todo lo que necesitas saber sobre el monitoreo de azúcar en sangre y qué significan tus resultados. Por el Dr. Juan Pablo González.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0e2a3a;--teal:#1a7a6e;--teal-light:#e8f5f3;--teal-mid:#2da898;
+  --warm:#f7f4ef;--text:#1c1c1c;--muted:#5a6a72;--white:#fff;
+  --border:rgba(26,122,110,0.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Lora',serif;font-size:19px;color:var(--navy);font-weight:600;text-decoration:none}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--teal)!important;color:white!important;padding:9px 22px;border-radius:100px;font-weight:500!important}
+.nav-cta:hover{background:var(--navy)!important}
+
+/* HERO DEL ARTÍCULO */
+.article-hero{background:var(--warm);padding:120px 6% 0;text-align:center}
+.article-cover{width:100%;max-width:900px;margin:40px auto 0;border-radius:20px 20px 0 0;overflow:hidden;aspect-ratio:16/7;display:block}
+.article-cover img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.article-tag{display:inline-block;background:var(--teal);color:white;font-size:12px;font-weight:500;padding:4px 14px;border-radius:100px;margin-bottom:20px;letter-spacing:.5px}
+.article-hero h1{font-family:'Lora',serif;font-size:clamp(28px,4vw,48px);color:var(--navy);line-height:1.2;max-width:720px;margin:0 auto 16px;font-weight:600}
+.article-hero h1 em{font-style:italic;color:var(--teal)}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.meta-dot{width:4px;height:4px;background:var(--border);border-radius:50%}
+.author-chip{display:flex;align-items:center;gap:8px}
+.author-avatar{width:32px;height:32px;border-radius:50%;background:var(--teal-light);border:2px solid var(--teal);overflow:hidden}
+.author-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+
+/* CONTENIDO */
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 6%}
+
+/* TABLA DE CONTENIDOS */
+.toc{background:var(--teal-light);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:48px}
+.toc h4{font-family:'Lora',serif;font-size:15px;color:var(--navy);margin-bottom:14px;font-weight:600}
+.toc ol{padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.toc li a{font-size:14px;color:var(--teal);text-decoration:none;font-weight:400}
+.toc li a:hover{text-decoration:underline}
+
+/* TIPOGRAFÍA DEL ARTÍCULO */
+.article-wrap h2{font-family:'Lora',serif;font-size:clamp(20px,2.5vw,26px);color:var(--navy);margin:48px 0 16px;font-weight:600;line-height:1.3}
+.article-wrap h3{font-family:'Lora',serif;font-size:18px;color:var(--navy);margin:32px 0 12px;font-weight:600}
+.article-wrap p{font-size:17px;color:#2c3e40;line-height:1.8;margin-bottom:20px;font-weight:300}
+.article-wrap ul,.article-wrap ol{padding-left:24px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px}
+.article-wrap li{font-size:16px;color:#2c3e40;line-height:1.7;font-weight:300}
+.article-wrap strong{font-weight:500;color:var(--navy)}
+
+/* CALLOUTS */
+.callout{border-left:4px solid var(--teal);background:var(--teal-light);padding:18px 22px;border-radius:0 12px 12px 0;margin:28px 0}
+.callout p{font-size:16px;color:var(--navy);margin:0;font-weight:400;line-height:1.65}
+.callout-warn{border-left-color:#e67e22;background:#fef9f0}
+.callout-warn p{color:#7d4e0f}
+
+/* TABLA */
+.table-wrap{overflow-x:auto;margin:28px 0}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{background:var(--navy);color:white;padding:12px 16px;text-align:left;font-weight:500;font-size:14px}
+th:first-child{border-radius:10px 0 0 0}
+th:last-child{border-radius:0 10px 0 0}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text);font-weight:300}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--warm)}
+.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:500}
+.badge-ok{background:#e8f5e9;color:#2e7d32}
+.badge-warn{background:#fff3e0;color:#e65100}
+.badge-bad{background:#fce4ec;color:#c62828}
+
+/* SEPARADOR */
+.divider{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* CTA INLINE */
+.cta-inline{background:var(--navy);border-radius:20px;padding:32px;text-align:center;margin:48px 0}
+.cta-inline h3{font-family:'Lora',serif;font-size:22px;color:white;margin-bottom:10px}
+.cta-inline p{font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:22px;font-weight:300}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:white;padding:12px 24px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-wa:hover{background:#1eba57}
+
+/* AUTOR */
+.author-card{display:flex;gap:20px;align-items:center;background:var(--warm);border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:56px}
+.author-img{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;border:3px solid var(--teal-light)}
+.author-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.author-name{font-family:'Lora',serif;font-size:17px;color:var(--navy);font-weight:600;margin-bottom:4px}
+.author-bio{font-size:14px;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* ARTÍCULOS RELACIONADOS */
+.related{padding:56px 6%;background:var(--warm)}
+.related h3{font-family:'Lora',serif;font-size:22px;color:var(--navy);margin-bottom:28px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rcard{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;text-decoration:none;transition:all .2s;display:block}
+.rcard:hover{transform:translateY(-2px);border-color:rgba(26,122,110,0.3)}
+.rcard-tag{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px;margin-bottom:10px}
+.rcard h4{font-family:'Lora',serif;font-size:15px;color:var(--navy);line-height:1.4;margin-bottom:8px;font-weight:600}
+.rcard span{font-size:12px;color:var(--teal);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--navy);padding:32px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Lora',serif;font-size:18px;color:white;font-weight:600;text-decoration:none}
+.footer-logo span{color:var(--teal-mid)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .article-wrap{padding:48px 5%}
+  .author-card{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">Doc<span>Pablo</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html#why">Sobre mí</a></li>
+    <li><a href="../index.html#services">Servicios</a></li>
+    <li><a href="../index.html#blog">Blog</a></li>
+    <li><a href="../index.html#contact" class="nav-cta">Agendar cita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="article-hero">
+  <span class="article-tag">Diabetes</span>
+  <h1>¿Cuándo debo revisar mi <em>glucosa en ayunas</em>?</h1>
+  <div class="article-meta">
+    <div class="author-chip">
+      <div class="author-avatar"><img src="../foto-dr-pablo.jpg" alt="Dr. Juan Pablo González"></div>
+      <span>Dr. Juan Pablo González</span>
+    </div>
+    <span class="meta-dot"></span>
+    <span>5 min de lectura</span>
+    <span class="meta-dot"></span>
+    <span>Mayo 2025</span>
+  </div>
+  <div class="article-cover">
+    <img src="glucosa.png" alt="Mujer midiendo su glucosa en casa">
+  </div>
+</div>
+
+<!-- ARTÍCULO -->
+<div class="article-wrap">
+
+  <!-- TABLA DE CONTENIDOS -->
+  <div class="toc">
+    <h4>En este artículo</h4>
+    <ol>
+      <li><a href="#que-es">¿Qué es la glucosa en ayunas?</a></li>
+      <li><a href="#cuando">¿Cuándo debo medirla?</a></li>
+      <li><a href="#valores">¿Qué significan mis resultados?</a></li>
+      <li><a href="#como">¿Cómo prepararme correctamente?</a></li>
+      <li><a href="#frecuencia">¿Con qué frecuencia debo hacerlo?</a></li>
+      <li><a href="#conclusion">Conclusión</a></li>
+    </ol>
+  </div>
+
+  <h2 id="que-es">¿Qué es la glucosa en ayunas?</h2>
+  <p>La glucosa en ayunas es la medición de azúcar en tu sangre después de no haber comido ni bebido nada (excepto agua) durante al menos <strong>8 horas</strong>. Es uno de los estudios más útiles y sencillos para detectar prediabetes y diabetes a tiempo.</p>
+  <p>A diferencia de la glucosa casual (que se puede tomar en cualquier momento), la glucosa en ayunas nos da una imagen más confiable de cómo tu cuerpo maneja el azúcar en condiciones basales, sin el efecto de los alimentos recientes.</p>
+
+  <div class="callout">
+    <p>💡 <strong>Dato importante:</strong> La mayoría de las personas con prediabetes no tienen síntomas. La única manera de detectarla es con una prueba de laboratorio.</p>
+  </div>
+
+  <h2 id="cuando">¿Cuándo debo medirla?</h2>
+  <p>Te recomiendo medir tu glucosa en ayunas en estos casos:</p>
+  <ul>
+    <li>Si tienes <strong>sobrepeso u obesidad</strong>, especialmente con grasa abdominal</li>
+    <li>Si tienes <strong>familiares directos</strong> con diabetes (papás, hermanos)</li>
+    <li>Si tienes <strong>presión alta</strong> o colesterol elevado</li>
+    <li>Si eres mujer y tuviste <strong>diabetes gestacional</strong></li>
+    <li>Si llevas un <strong>estilo de vida sedentario</strong></li>
+    <li>Si ya tienes síntomas como sed excesiva, orinar mucho o cansancio sin causa</li>
+    <li>Como parte de tu <strong>chequeo anual de rutina</strong> si tienes más de 35 años</li>
+  </ul>
+
+  <h2 id="valores">¿Qué significan mis resultados?</h2>
+  <p>Aquí está la tabla de referencia que usamos en consulta:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Resultado</th>
+          <th>Valor (mg/dL)</th>
+          <th>Interpretación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Normal</td>
+          <td>70 — 99</td>
+          <td><span class="badge badge-ok">✓ Sin riesgo</span></td>
+        </tr>
+        <tr>
+          <td>Prediabetes</td>
+          <td>100 — 125</td>
+          <td><span class="badge badge-warn">⚠ Atención</span></td>
+        </tr>
+        <tr>
+          <td>Diabetes</td>
+          <td>126 o más</td>
+          <td><span class="badge badge-bad">✗ Consulta médica</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <p>⚠️ <strong>Importante:</strong> Un solo resultado elevado no es suficiente para diagnosticar diabetes. Se necesitan dos mediciones en días diferentes o una prueba confirmatoria. Nunca te autodiagnostiques.</p>
+  </div>
+
+  <h2 id="como">¿Cómo prepararme correctamente?</h2>
+  <p>Para que el resultado sea confiable, sigue estas recomendaciones la noche anterior y la mañana del estudio:</p>
+
+  <h3>La noche anterior</h3>
+  <ul>
+    <li>Cena ligera, sin excesos de carbohidratos o azúcares</li>
+    <li>No consumas alcohol</li>
+    <li>El ayuno debe comenzar al menos <strong>8 horas antes</strong> de la toma de muestra</li>
+  </ul>
+
+  <h3>La mañana del estudio</h3>
+  <ul>
+    <li>Solo puedes tomar <strong>agua simple</strong></li>
+    <li>No fumes, no mastiques chicle</li>
+    <li>Si tomas medicamentos, consulta con tu médico si debes tomarlos antes o después del estudio</li>
+    <li>Intenta llegar al laboratorio <strong>relajado</strong>, ya que el estrés puede alterar ligeramente los niveles</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 id="frecuencia">¿Con qué frecuencia debo hacerlo?</h2>
+  <p>Depende de tu situación:</p>
+  <ul>
+    <li><strong>Sin factores de riesgo:</strong> una vez al año como parte de tu chequeo general</li>
+    <li><strong>Con prediabetes:</strong> cada 3 a 6 meses para monitorear la evolución</li>
+    <li><strong>Con diabetes ya diagnosticada:</strong> según las indicaciones de tu médico, generalmente cada 3 meses junto con la hemoglobina glucosilada (HbA1c)</li>
+    <li><strong>Embarazadas:</strong> en la semana 24-28 se realiza una prueba especial de tolerancia a la glucosa</li>
+  </ul>
+
+  <div class="callout">
+    <p>💡 <strong>Recuerda:</strong> La glucosa en ayunas es solo una parte del panorama. En consulta también evaluamos la hemoglobina glucosilada (HbA1c), que nos dice cómo ha estado tu azúcar en los últimos 3 meses.</p>
+  </div>
+
+  <h2 id="conclusion">Conclusión</h2>
+  <p>Revisar tu glucosa en ayunas es uno de los actos de prevención más simples y baratos que puedes hacer por tu salud. Si tienes factores de riesgo, no esperes a tener síntomas — la diabetes tipo 2 se puede prevenir o retrasar significativamente cuando se detecta a tiempo.</p>
+  <p>Si tienes dudas sobre tus resultados o no sabes si debes hacerte este estudio, con gusto te oriento en consulta.</p>
+
+  <!-- CTA -->
+  <div class="cta-inline">
+    <h3>¿Tienes dudas sobre tus resultados?</h3>
+    <p>Agenda una consulta y revisamos juntos tus estudios con calma y sin prisas.</p>
+    <a href="https://wa.me/528672660175" class="btn-wa">📱 Agendar por WhatsApp</a>
+  </div>
+
+  <!-- AUTOR -->
+  <div class="author-card">
+    <div class="author-img"><img src="../foto-dr-pablo.jpg" alt="Dr. Juan Pablo González"></div>
+    <div>
+      <div class="author-name">Dr. Juan Pablo González</div>
+      <div class="author-bio">Médico General con más de 8 años de experiencia. Especialista en diabetes, obesidad y medicina preventiva. Miembro activo de la Sociedad Mexicana de Obesidad. Consulta en Nuevo Laredo, Tamps.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ARTÍCULOS RELACIONADOS -->
+<div class="related">
+  <h3>También puede interesarte</h3>
+  <div class="related-grid">
+    <a href="perder-peso-vs-grasa.html" class="rcard">
+      <span class="rcard-tag">Obesidad</span>
+      <h4>La diferencia entre perder peso y perder grasa</h4>
+      <span>7 min de lectura →</span>
+    </a>
+    <a href="analisis-anuales.html" class="rcard">
+      <span class="rcard-tag">Prevención</span>
+      <h4>Los 5 análisis que debes hacerte cada año</h4>
+      <span>4 min de lectura →</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="../index.html">Doc<span>Pablo</span></a>
+  <div class="footer-copy">© 2025 Dr. Juan Pablo González · Medicina General · Nuevo Laredo, Tamps.</div>
+</footer>
+
+</body>
+</html>

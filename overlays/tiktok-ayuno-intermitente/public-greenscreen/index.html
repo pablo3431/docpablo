@@ -41,18 +41,19 @@
       overflow: visible;
     }
 
+    /* Card auto-sizes to content, anchored at bottom of host */
     .card-inner {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: #FFFFFF;
-      border-radius: 28px;
-      box-shadow: 0 12px 64px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.10);
-      padding: 52px 56px;
+      border-radius: 26px;
+      box-shadow: 0 10px 56px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 38px 46px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 22px;
-      overflow: hidden;
+      gap: 16px;
     }
 
     /* Kicker badge pill */
@@ -66,7 +67,7 @@
       font-weight: 700;
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      padding: 11px 26px;
+      padding: 10px 24px;
       border-radius: 100px;
       align-self: flex-start;
       opacity: 0;
@@ -74,31 +75,31 @@
     }
     .badge-kicker.orange { background: var(--orange); }
 
-    /* Hero headline */
+    /* Hero headline — large display text */
     .hero {
-      font-size: 76px;
+      font-size: 86px;
       font-weight: 900;
       color: var(--dark);
-      line-height: 1.06;
+      line-height: 1.05;
       letter-spacing: -0.025em;
       opacity: 0;
     }
     .hero .accent { color: var(--green); display: block; }
     .hero .accent-orange { color: var(--orange); }
 
-    /* Smaller hero for cards with more items */
+    /* Medium hero for cards with 3+ elements */
     .hero-sm {
-      font-size: 58px;
+      font-size: 68px;
       font-weight: 900;
       color: var(--dark);
-      line-height: 1.08;
+      line-height: 1.06;
       letter-spacing: -0.02em;
       opacity: 0;
     }
 
     /* Big isolated word */
     .word-pop {
-      font-size: 104px;
+      font-size: 118px;
       font-weight: 900;
       color: var(--orange);
       line-height: 1.0;
@@ -106,16 +107,16 @@
       opacity: 0;
     }
 
-    /* Sub / body text */
+    /* Supporting body line */
     .sub-text {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 400;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.4;
       opacity: 0;
     }
 
-    /* Green accent underline bar */
+    /* Thin accent underline bar */
     .accent-bar {
       display: block;
       height: 5px;
@@ -124,7 +125,7 @@
       width: 0;
     }
 
-    /* Pill badges row (Cochrane / BMJ) */
+    /* Source badge pills (Cochrane / BMJ) */
     .pill-row {
       display: flex;
       gap: 14px;
@@ -137,28 +138,28 @@
       background: var(--green-bg);
       border: 2.5px solid var(--green);
       color: #1B6B52;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 800;
       padding: 10px 26px;
       border-radius: 14px;
     }
 
-    /* Stat number row */
+    /* Big stat counter */
     .stat-row {
       display: flex;
       align-items: baseline;
-      gap: 16px;
+      gap: 14px;
       opacity: 0;
     }
     .stat-number {
-      font-size: 116px;
+      font-size: 128px;
       font-weight: 900;
       color: var(--dark);
       line-height: 1;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.04em;
     }
     .stat-label {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 500;
       color: var(--muted);
     }
@@ -181,8 +182,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 56px;
-      height: 56px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       font-size: 24px;
       font-weight: 900;
@@ -191,23 +192,23 @@
     .icon-check { background: var(--green); color: #fff; }
     .icon-x { background: var(--orange-bg); color: var(--orange); }
     .row-text {
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 700;
       color: var(--dark);
-      line-height: 1.25;
+      line-height: 1.2;
     }
     .row-text.muted {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 400;
       color: var(--muted);
     }
     .row-text strong { color: var(--orange); font-weight: 800; }
 
-    /* Bullet items */
+    /* Bullet list items */
     .bullet-item {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       opacity: 0;
     }
     .bullet-diamond {
@@ -220,7 +221,7 @@
       flex-shrink: 0;
     }
     .bullet-text {
-      font-size: 46px;
+      font-size: 52px;
       font-weight: 600;
       color: var(--dark);
     }
@@ -229,9 +230,9 @@
       font-weight: 900;
     }
 
-    /* Handle / branding */
+    /* Branding close card */
     .handle-text {
-      font-size: 90px;
+      font-size: 92px;
       font-weight: 900;
       color: var(--dark);
       line-height: 1.0;
@@ -239,7 +240,7 @@
       opacity: 0;
     }
     .tagline-text {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 400;
       color: var(--muted);
       opacity: 0;
@@ -249,7 +250,7 @@
       align-items: center;
       background: var(--green);
       color: #fff;
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 700;
       letter-spacing: 0.03em;
       padding: 12px 30px;
@@ -278,7 +279,7 @@
     data-start="0.5"
     data-duration="4.5"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c01-badge">Evidencia Médica · Dr. Juan Pablo González</div>
@@ -295,7 +296,7 @@
     data-start="6.0"
     data-duration="12.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c02-badge">La Ciencia Dice · 2026</div>
@@ -317,7 +318,7 @@
     data-start="19.0"
     data-duration="9.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c03-badge">El Veredicto</div>
@@ -339,7 +340,7 @@
     data-start="29.0"
     data-duration="15.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c04-badge">El Matiz Honesto</div>
@@ -356,7 +357,7 @@
     data-start="46.0"
     data-duration="12.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker orange" id="c05-badge">⚠ Ojo Con Esto</div>
@@ -373,7 +374,7 @@
     data-start="59.0"
     data-duration="11.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c06-badge">Cómo Hacerlo Bien</div>
@@ -395,7 +396,7 @@
     data-start="71.0"
     data-duration="18.0"
     data-track-index="2"
-    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
     <div class="card-inner">
       <div class="badge-kicker" id="c07-badge">Salud Con Evidencia · No Con Modas</div>
@@ -421,15 +422,15 @@
       /* ── CARD 01  [0.5 – 5.0s] ── */
       tl.set('.card-host[data-card-id="card-01"]', { visibility: 'visible' }, 0.5);
       tl.fromTo('.card-host[data-card-id="card-01"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.5);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 0.5);
       tl.fromTo('#c01-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0.72);
       tl.fromTo('#c01-hero',
         { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.88);
       tl.fromTo('#c01-bar',
-        { width: 0 }, { width: 380, duration: 0.5, ease: 'power2.out' }, 1.25);
+        { width: 0 }, { width: 400, duration: 0.5, ease: 'power2.out' }, 1.26);
       tl.fromTo('#c01-sub',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.5);
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.52);
       tl.to('.card-host[data-card-id="card-01"]',
         { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 4.6);
       tl.set('.card-host[data-card-id="card-01"]', { visibility: 'hidden' }, 5.0);
@@ -437,7 +438,7 @@
       /* ── CARD 02  [6.0 – 18.0s] ── */
       tl.set('.card-host[data-card-id="card-02"]', { visibility: 'visible' }, 6.0);
       tl.fromTo('.card-host[data-card-id="card-02"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 6.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 6.0);
       tl.fromTo('#c02-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 6.22);
       tl.fromTo('#c02-pills',
@@ -461,7 +462,7 @@
       /* ── CARD 03  [19.0 – 28.0s] ── */
       tl.set('.card-host[data-card-id="card-03"]', { visibility: 'visible' }, 19.0);
       tl.fromTo('.card-host[data-card-id="card-03"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 19.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 19.0);
       tl.fromTo('#c03-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 19.22);
       tl.fromTo('#c03-check',
@@ -476,15 +477,15 @@
       /* ── CARD 04  [29.0 – 44.0s] ── */
       tl.set('.card-host[data-card-id="card-04"]', { visibility: 'visible' }, 29.0);
       tl.fromTo('.card-host[data-card-id="card-04"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 29.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 29.0);
       tl.fromTo('#c04-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 29.22);
       tl.fromTo('#c04-hero',
         { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 29.42);
       tl.fromTo('#c04-bar',
-        { width: 0 }, { width: 420, duration: 0.5, ease: 'power2.out' }, 29.85);
+        { width: 0 }, { width: 440, duration: 0.5, ease: 'power2.out' }, 29.86);
       tl.fromTo('#c04-sub',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 30.12);
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 30.14);
       tl.to('.card-host[data-card-id="card-04"]',
         { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 43.6);
       tl.set('.card-host[data-card-id="card-04"]', { visibility: 'hidden' }, 44.0);
@@ -492,7 +493,7 @@
       /* ── CARD 05  [46.0 – 58.0s] ── */
       tl.set('.card-host[data-card-id="card-05"]', { visibility: 'visible' }, 46.0);
       tl.fromTo('.card-host[data-card-id="card-05"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 46.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 46.0);
       tl.fromTo('#c05-badge',
         { opacity: 0, scale: 0.78 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(1.5)' }, 46.22);
       tl.fromTo('#c05-hero',
@@ -508,7 +509,7 @@
       /* ── CARD 06  [59.0 – 70.0s] ── */
       tl.set('.card-host[data-card-id="card-06"]', { visibility: 'visible' }, 59.0);
       tl.fromTo('.card-host[data-card-id="card-06"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 59.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 59.0);
       tl.fromTo('#c06-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 59.22);
       tl.fromTo('#c06-item1',
@@ -522,17 +523,17 @@
       /* ── CARD 07  [71.0 – 89.0s] ── */
       tl.set('.card-host[data-card-id="card-07"]', { visibility: 'visible' }, 71.0);
       tl.fromTo('.card-host[data-card-id="card-07"]',
-        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 71.0);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 71.0);
       tl.fromTo('#c07-badge',
         { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 71.22);
       tl.fromTo('#c07-handle',
         { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 71.42);
       tl.fromTo('#c07-bar',
-        { width: 0 }, { width: 480, duration: 0.5, ease: 'power2.out' }, 71.85);
+        { width: 0 }, { width: 500, duration: 0.5, ease: 'power2.out' }, 71.86);
       tl.fromTo('#c07-tagline',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.12);
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.14);
       tl.fromTo('#c07-url',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.42);
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.44);
       tl.to('.card-host[data-card-id="card-07"]',
         { opacity: 0, y: -28, duration: 0.5, ease: 'power2.in' }, 88.5);
 

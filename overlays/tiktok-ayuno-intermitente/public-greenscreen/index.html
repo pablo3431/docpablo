@@ -389,12 +389,12 @@
     </div>
   </div>
 
-  <!-- ── CARD 07  Cierre DocPablo  [71.0 – 89.0s] ── -->
+  <!-- ── CARD 07  Cierre DocPablo  [71.0 – 79.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-07"
     data-start="71.0"
-    data-duration="18.0"
+    data-duration="8.0"
     data-track-index="2"
     style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
@@ -404,6 +404,22 @@
       <span class="accent-bar" id="c07-bar"></span>
       <div class="tagline-text" id="c07-tagline">Dr. Juan Pablo González · Médico General</div>
       <div class="url-badge" id="c07-url">docpablo.com</div>
+    </div>
+  </div>
+
+  <!-- ── CARD 08  CTA Sígueme  [80.0 – 89.0s] ── -->
+  <div
+    class="card-host clip"
+    data-card-id="card-08"
+    data-start="80.0"
+    data-duration="9.0"
+    data-track-index="2"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
+  >
+    <div class="card-inner">
+      <div class="badge-kicker" id="c08-badge">Sígueme</div>
+      <div class="hero" id="c08-hero">Te invito a <span class="accent">seguirme</span></div>
+      <div class="sub-text" id="c08-sub">@docpablo · docpablo.com</div>
     </div>
   </div>
 
@@ -535,6 +551,20 @@
       tl.fromTo('#c07-url',
         { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.44);
       tl.to('.card-host[data-card-id="card-07"]',
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 78.6);
+      tl.set('.card-host[data-card-id="card-07"]', { visibility: 'hidden' }, 79.0);
+
+      /* ── CARD 08  [80.0 – 89.0s] ── */
+      tl.set('.card-host[data-card-id="card-08"]', { visibility: 'visible' }, 80.0);
+      tl.fromTo('.card-host[data-card-id="card-08"]',
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 80.0);
+      tl.fromTo('#c08-badge',
+        { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.38, ease: 'back.out(1.5)' }, 80.22);
+      tl.fromTo('#c08-hero',
+        { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 80.42);
+      tl.fromTo('#c08-sub',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 80.82);
+      tl.to('.card-host[data-card-id="card-08"]',
         { opacity: 0, y: -28, duration: 0.5, ease: 'power2.in' }, 88.5);
 
       window.__timelines = window.__timelines || {};

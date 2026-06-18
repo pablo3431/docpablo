@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-400-latin.woff2') format('woff2');
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-700-latin.woff2') format('woff2');
+      font-weight: 700;
+      font-display: block;
+    }
+
+    :root {
+      --green:     #4DB89A;
+      --green-bg:  #EAF7F2;
+      --orange:    #E87C0C;
+      --orange-bg: #FFF3E8;
+      --dark:      #1B1B1B;
+      --muted:     #6B7280;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #FF00FF;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .card-host {
+      position: absolute;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    /* Card auto-sizes to content, anchored at bottom of host */
+    .card-inner {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: #FFFFFF;
+      border-radius: 26px;
+      box-shadow: 0 10px 56px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 38px 46px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── Badge pill ── */
+    .badge-kicker {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border-radius: 100px;
+      align-self: flex-start;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .badge-kicker.orange { background: var(--orange); }
+
+    /* ── Hero headline ── */
+    .hero {
+      font-size: 86px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      opacity: 0;
+    }
+    .hero .accent        { color: var(--green); }
+    .hero .accent-orange { color: var(--orange); }
+
+    /* ── Medium hero ── */
+    .hero-sm {
+      font-size: 68px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+
+    /* ── Stacked keyword highlight (card 2) ── */
+    .word-tag {
+      font-size: 66px;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+
+    /* ── Big stat ── */
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      opacity: 0;
+    }
+    .stat-number {
+      font-size: 128px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    /* ── Green accent bar ── */
+    .accent-bar {
+      display: block;
+      height: 5px;
+      background: var(--green);
+      border-radius: 3px;
+      width: 0;
+    }
+    .accent-bar.orange { background: var(--orange); }
+
+    /* ── Supporting text ── */
+    .sub-text {
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.4;
+      opacity: 0;
+    }
+
+    /* ── Bullet list ── */
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+    }
+    .bullet-diamond {
+      display: block;
+      width: 18px; height: 18px;
+      background: var(--green);
+      border-radius: 3px;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .bullet-text {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.15;
+    }
+    .bullet-text strong { color: var(--green); font-weight: 900; }
+
+    /* ── Check / X rows ── */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+    }
+    .icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      font-size: 22px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .icon-x { background: var(--orange-bg); color: var(--orange); }
+    .row-text {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    .row-text strong { color: var(--orange); }
+  </style>
+</head>
+<body>
+<div
+  id="stage"
+  data-composition-id="docpablo-health-halo-gs"
+  data-start="0"
+  data-duration="36"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+  style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;"
+>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 01 · Efecto Halo de Salud — el concepto  [0.5–3.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c01" data-start="0.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker" id="c01-badge">El truco que no ves</div>
+      <div class="hero" id="c01-hero">Efecto Halo <span class="accent">de Salud</span></div>
+      <span class="accent-bar" id="c01-bar"></span>
+      <div class="sub-text" id="c01-sub">Tu cerebro ve 1 palabra… y asume que TODO el producto es sano</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 02 · Las palabras trampa  [4.5–7.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c02" data-start="4.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker orange" id="c02-badge">Las palabras trampa</div>
+      <div class="word-tag" id="c02-w1">"Natural"</div>
+      <div class="word-tag" id="c02-w2">"Sin azúcar"</div>
+      <div class="word-tag" id="c02-w3">"Proteína"</div>
+      <div class="sub-text" id="c02-sub">Una palabra basta · dejas de leer el resto</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 03 · Granola  [8.5–11.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c03" data-start="8.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker orange" id="c03-badge">Granola</div>
+      <div class="stat-row" id="c03-stat">
+        <span class="stat-number" id="c03-count">1</span>
+        <span class="stat-label">cucharaditas<br>de azúcar</span>
+      </div>
+      <div class="sub-text" id="c03-sub">por cada 100 g · Es postre con cara de avena</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 04 · Yogur de sabor  [12.5–15.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c04" data-start="12.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker" id="c04-badge">Yogur de sabor</div>
+      <div class="hero-sm" id="c04-hero">¿Azúcar &gt; Proteína?</div>
+      <span class="accent-bar orange" id="c04-bar"></span>
+      <div class="sub-text" id="c04-sub">Si la respuesta es sí → no es desayuno, es helado</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 05 · Jugo "natural"  [16.5–19.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c05" data-start="16.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker orange" id="c05-badge">Jugo "Natural"</div>
+      <div class="hero" id="c05-hero"><span class="accent-orange">Sin fibra</span></div>
+      <div class="sub-text" id="c05-sub">El azúcar entra directo y rápido a tu sangre · Sin su freno natural</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 06 · Barras de proteína  [20.5–23.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c06" data-start="20.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker orange" id="c06-badge">Barra de proteína</div>
+      <div class="check-row" id="c06-row">
+        <div class="icon-circle icon-x">≈</div>
+        <div class="row-text">El azúcar de una<br><strong>barra de chocolate</strong></div>
+      </div>
+      <div class="sub-text" id="c06-sub">El marketing la vende como rendimiento · La etiqueta dice otra cosa</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 07 · La consecuencia real  [24.5–27.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c07" data-start="24.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker" id="c07-badge">La consecuencia real</div>
+      <div class="hero-sm" id="c07-hero">Resistencia<br>a la insulina</div>
+      <div class="sub-text" id="c07-sub">El camino silencioso que nadie ve… porque creían que comían bien</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 08 · La regla simple  [28.5–31.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c08" data-start="28.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker" id="c08-badge">La regla simple</div>
+      <div class="hero" id="c08-hero">Voltea el <span class="accent">empaque</span></div>
+      <span class="accent-bar" id="c08-bar"></span>
+      <div class="sub-text" id="c08-sub">Lee ingredientes · No creas el frente del empaque</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CARD 09 · Empowerment  [32.5–35.5]
+       ════════════════════════════════════════════════════════ -->
+  <div class="card-host clip" data-card-id="c09" data-start="32.5" data-duration="3.0" data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge-kicker" id="c09-badge">Con solo hacer esto</div>
+      <div class="stat-row" id="c09-stat">
+        <span class="stat-number" id="c09-count">0</span>
+        <span class="stat-label">%<br>por delante</span>
+      </div>
+      <div class="sub-text" id="c09-sub">Ya estás por delante de la mayoría · Solo por leer ingredientes</div>
+    </div>
+  </div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      var tl = window.gsap.timeline({ paused: true });
+
+      /* ── Shared helpers ────────────────────────────── */
+      function enter(id, S) {
+        tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'visible' }, S);
+        tl.fromTo('.card-host[data-card-id="' + id + '"]',
+          { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.44, ease: 'power3.out' }, S);
+      }
+      function exit(id, S) {
+        tl.to('.card-host[data-card-id="' + id + '"]',
+          { opacity: 0, y: -28, duration: 0.40, ease: 'power2.in' }, S + 2.60);
+        tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'hidden' }, S + 3.0);
+      }
+      function badge(elId, S) {
+        tl.fromTo('#' + elId,
+          { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.28, ease: 'back.out(1.5)' }, S + 0.18);
+      }
+      function slideIn(elId, S, delay) {
+        tl.fromTo('#' + elId,
+          { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }, S + delay);
+      }
+      function fadeIn(elId, S, delay) {
+        tl.fromTo('#' + elId,
+          { opacity: 0 }, { opacity: 1, duration: 0.36, ease: 'power2.out' }, S + delay);
+      }
+      function barIn(elId, S, delay, w) {
+        tl.fromTo('#' + elId,
+          { width: 0 }, { width: w || 440, duration: 0.44, ease: 'power2.out' }, S + delay);
+      }
+
+      /* ── CARD 01  Efecto Halo  [0.5–3.5] ── */
+      (function () {
+        var S = 0.5;
+        enter('c01', S); exit('c01', S);
+        badge('c01-badge', S);
+        slideIn('c01-hero', S, 0.30);
+        barIn('c01-bar', S, 0.56, 380);
+        fadeIn('c01-sub', S, 0.68);
+      }());
+
+      /* ── CARD 02  Palabras trampa  [4.5–7.5] ── */
+      (function () {
+        var S = 4.5;
+        enter('c02', S); exit('c02', S);
+        badge('c02-badge', S);
+        slideIn('c02-w1', S, 0.28);
+        slideIn('c02-w2', S, 0.42);
+        slideIn('c02-w3', S, 0.56);
+        fadeIn('c02-sub', S, 0.74);
+      }());
+
+      /* ── CARD 03  Granola  [8.5–11.5] ── */
+      (function () {
+        var S = 8.5;
+        enter('c03', S); exit('c03', S);
+        badge('c03-badge', S);
+        tl.fromTo('#c03-stat',
+          { opacity: 0 }, { opacity: 1, duration: 0.36, ease: 'power2.out' }, S + 0.30);
+        var o = { v: 1 };
+        tl.to(o, {
+          v: 7, duration: 0.60, ease: 'power2.out',
+          onUpdate: function () {
+            var el = document.getElementById('c03-count');
+            if (el) el.textContent = Math.round(o.v);
+          }
+        }, S + 0.30);
+        fadeIn('c03-sub', S, 0.76);
+      }());
+
+      /* ── CARD 04  Yogur de sabor  [12.5–15.5] ── */
+      (function () {
+        var S = 12.5;
+        enter('c04', S); exit('c04', S);
+        badge('c04-badge', S);
+        slideIn('c04-hero', S, 0.30);
+        barIn('c04-bar', S, 0.58, 360);
+        fadeIn('c04-sub', S, 0.70);
+      }());
+
+      /* ── CARD 05  Jugo natural  [16.5–19.5] ── */
+      (function () {
+        var S = 16.5;
+        enter('c05', S); exit('c05', S);
+        badge('c05-badge', S);
+        tl.fromTo('#c05-hero',
+          { opacity: 0, scale: 0.90 }, { opacity: 1, scale: 1, duration: 0.48, ease: 'back.out(1.4)' }, S + 0.30);
+        fadeIn('c05-sub', S, 0.60);
+      }());
+
+      /* ── CARD 06  Barra de proteína  [20.5–23.5] ── */
+      (function () {
+        var S = 20.5;
+        enter('c06', S); exit('c06', S);
+        badge('c06-badge', S);
+        tl.fromTo('#c06-row',
+          { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.46, ease: 'power2.out' }, S + 0.30);
+        fadeIn('c06-sub', S, 0.62);
+      }());
+
+      /* ── CARD 07  Resistencia a la insulina  [24.5–27.5] ── */
+      (function () {
+        var S = 24.5;
+        enter('c07', S); exit('c07', S);
+        badge('c07-badge', S);
+        slideIn('c07-hero', S, 0.30);
+        fadeIn('c07-sub', S, 0.56);
+      }());
+
+      /* ── CARD 08  Voltea el empaque  [28.5–31.5] ── */
+      (function () {
+        var S = 28.5;
+        enter('c08', S); exit('c08', S);
+        badge('c08-badge', S);
+        slideIn('c08-hero', S, 0.30);
+        barIn('c08-bar', S, 0.58, 420);
+        fadeIn('c08-sub', S, 0.70);
+      }());
+
+      /* ── CARD 09  90 %  [32.5–35.5] ── */
+      (function () {
+        var S = 32.5;
+        enter('c09', S); exit('c09', S);
+        badge('c09-badge', S);
+        tl.fromTo('#c09-stat',
+          { opacity: 0 }, { opacity: 1, duration: 0.36, ease: 'power2.out' }, S + 0.30);
+        var o = { v: 0 };
+        tl.to(o, {
+          v: 90, duration: 0.80, ease: 'power2.out',
+          onUpdate: function () {
+            var el = document.getElementById('c09-count');
+            if (el) el.textContent = Math.round(o.v);
+          }
+        }, S + 0.30);
+        fadeIn('c09-sub', S, 0.80);
+      }());
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['docpablo-health-halo-gs'] = tl;
+    }());
+  </script>
+</div>
+</body>
+</html>

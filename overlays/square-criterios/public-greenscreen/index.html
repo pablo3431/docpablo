@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-400-latin.woff2') format('woff2');
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-700-latin.woff2') format('woff2');
+      font-weight: 700;
+      font-display: block;
+    }
+
+    :root {
+      --green:    #4DB89A;
+      --green-bg: #EAF7F2;
+      --dark:     #1B1B1B;
+      --muted:    #6B7280;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #FF00FF;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .card-host {
+      position: absolute;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    /* Full-height square card */
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 28px;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 52px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Kicker badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 10px 26px;
+      border-radius: 100px;
+      align-self: flex-start;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    /* Big diagnostic range */
+    .stat-big {
+      font-size: 112px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      opacity: 0;
+    }
+    .stat-big .unit {
+      font-size: 50px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: -0.01em;
+    }
+
+    /* Thin green accent bar */
+    .bar {
+      display: block;
+      height: 5px;
+      background: var(--green);
+      border-radius: 3px;
+      width: 0;
+    }
+
+    /* Supporting text */
+    .sub {
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.45;
+      opacity: 0;
+    }
+
+    /* Reference row: normal / diabetes thresholds */
+    .ref-row {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      opacity: 0;
+    }
+    .ref-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: var(--green-bg);
+      border: 2px solid var(--green);
+      border-radius: 14px;
+      padding: 10px 24px;
+    }
+    .ref-label {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .ref-value {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+<div
+  id="stage"
+  data-composition-id="docpablo-criterios-sq"
+  data-start="0"
+  data-duration="14"
+  data-fps="30"
+  data-width="1080"
+  data-height="1080"
+  style="position:relative;width:1080px;height:1080px;overflow:hidden;background:#FF00FF;"
+>
+
+  <!-- ── CRITERIO 1  Glucosa en ayuno  [0.5 – 4.5s] ── -->
+  <div class="card-host clip" data-card-id="sq01" data-start="0.5" data-duration="4.0" data-track-index="2"
+       style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge" id="s01-badge">Criterio 1 de 3 · Glucosa en Ayuno</div>
+      <div class="stat-big" id="s01-stat">100–125 <span class="unit">mg/dL</span></div>
+      <span class="bar" id="s01-bar"></span>
+      <div class="ref-row" id="s01-ref">
+        <div class="ref-pill">
+          <span class="ref-label">Normal</span>
+          <span class="ref-value">menos de 100</span>
+        </div>
+        <div class="ref-pill">
+          <span class="ref-label">Diabetes</span>
+          <span class="ref-value">126 o más</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CRITERIO 2  A1c  [5.0 – 9.0s] ── -->
+  <div class="card-host clip" data-card-id="sq02" data-start="5.0" data-duration="4.0" data-track-index="2"
+       style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge" id="s02-badge">Criterio 2 de 3 · Hemoglobina Glucosilada (A1c)</div>
+      <div class="stat-big" id="s02-stat">5.7–6.4 <span class="unit">%</span></div>
+      <span class="bar" id="s02-bar"></span>
+      <div class="sub" id="s02-sub">Tu promedio de glucosa de los últimos 3 meses</div>
+    </div>
+  </div>
+
+  <!-- ── CRITERIO 3  Intolerancia  [9.5 – 13.5s] ── -->
+  <div class="card-host clip" data-card-id="sq03" data-start="9.5" data-duration="4.0" data-track-index="2"
+       style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+      <div class="badge" id="s03-badge">Criterio 3 de 3 · Intolerancia a la Glucosa</div>
+      <div class="stat-big" id="s03-stat">140–199 <span class="unit">mg/dL</span></div>
+      <span class="bar" id="s03-bar"></span>
+      <div class="sub" id="s03-sub">2 horas después de una carga oral de glucosa (75 g)</div>
+    </div>
+  </div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      var tl = window.gsap.timeline({ paused: true });
+
+      function card(id, badgeId, statId, barId, extra1Id, extra1Delay, S) {
+        /* enter */
+        tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'visible' }, S);
+        tl.fromTo('.card-host[data-card-id="' + id + '"]',
+          { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.46, ease: 'power3.out' }, S);
+        /* badge */
+        tl.fromTo('#' + badgeId, { opacity: 0, scale: 0.84 },
+          { opacity: 1, scale: 1, duration: 0.30, ease: 'back.out(1.4)' }, S + 0.20);
+        /* stat number */
+        tl.fromTo('#' + statId, { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, S + 0.36);
+        /* bar */
+        tl.fromTo('#' + barId, { width: 0 },
+          { width: 480, duration: 0.48, ease: 'power2.out' }, S + 0.60);
+        /* extra (ref-row or sub) */
+        tl.fromTo('#' + extra1Id, { opacity: 0 },
+          { opacity: 1, duration: 0.36, ease: 'power2.out' }, S + extra1Delay);
+        /* exit */
+        tl.to('.card-host[data-card-id="' + id + '"]',
+          { opacity: 0, y: -24, duration: 0.38, ease: 'power2.in' }, S + 3.62);
+        tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'hidden' }, S + 4.0);
+      }
+
+      card('sq01', 's01-badge', 's01-stat', 's01-bar', 's01-ref',  0.78, 0.5);
+      card('sq02', 's02-badge', 's02-stat', 's02-bar', 's02-sub',  0.76, 5.0);
+      card('sq03', 's03-badge', 's03-stat', 's03-bar', 's03-sub',  0.76, 9.5);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['docpablo-criterios-sq'] = tl;
+    }());
+  </script>
+</div>
+</body>
+</html>

@@ -46,11 +46,10 @@
       background: #FFFFFF;
       border-radius: 28px;
       box-shadow: 0 12px 60px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10);
-      padding: 52px 56px;
+      padding: 48px 56px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 20px;
+      justify-content: space-between;
     }
 
     /* Kicker badge */
@@ -59,11 +58,11 @@
       align-items: center;
       background: var(--green);
       color: #fff;
-      font-size: 21px;
+      font-size: 24px;
       font-weight: 700;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 10px 26px;
+      padding: 12px 28px;
       border-radius: 100px;
       align-self: flex-start;
       opacity: 0;
@@ -72,24 +71,27 @@
 
     /* Big diagnostic range */
     .stat-big {
-      font-size: 112px;
+      font-size: 186px;
       font-weight: 900;
       color: var(--dark);
-      line-height: 1.0;
-      letter-spacing: -0.04em;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
       opacity: 0;
     }
-    .stat-big .unit {
-      font-size: 50px;
+
+    /* Unit on its own line */
+    .stat-unit {
+      font-size: 64px;
       font-weight: 700;
       color: var(--muted);
       letter-spacing: -0.01em;
+      opacity: 0;
     }
 
     /* Thin green accent bar */
     .bar {
       display: block;
-      height: 5px;
+      height: 7px;
       background: var(--green);
       border-radius: 3px;
       width: 0;
@@ -97,10 +99,10 @@
 
     /* Supporting text */
     .sub {
-      font-size: 32px;
+      font-size: 40px;
       font-weight: 400;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.35;
       opacity: 0;
     }
 
@@ -118,17 +120,17 @@
       background: var(--green-bg);
       border: 2px solid var(--green);
       border-radius: 14px;
-      padding: 10px 24px;
+      padding: 12px 28px;
     }
     .ref-label {
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--green);
     }
     .ref-value {
-      font-size: 30px;
+      font-size: 38px;
       font-weight: 800;
       color: var(--dark);
     }
@@ -151,7 +153,8 @@
        style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
     <div class="card-inner">
       <div class="badge" id="s01-badge">Criterio 1 de 3 · Glucosa en Ayuno</div>
-      <div class="stat-big" id="s01-stat">100–125 <span class="unit">mg/dL</span></div>
+      <div class="stat-big" id="s01-stat">100–125</div>
+      <div class="stat-unit" id="s01-unit">mg/dL</div>
       <span class="bar" id="s01-bar"></span>
       <div class="ref-row" id="s01-ref">
         <div class="ref-pill">
@@ -171,9 +174,10 @@
        style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
     <div class="card-inner">
       <div class="badge" id="s02-badge">Criterio 2 de 3 · Hemoglobina Glucosilada (A1c)</div>
-      <div class="stat-big" id="s02-stat">5.7–6.4 <span class="unit">%</span></div>
+      <div class="stat-big" id="s02-stat">5.7–6.4</div>
+      <div class="stat-unit" id="s02-unit">%</div>
       <span class="bar" id="s02-bar"></span>
-      <div class="sub" id="s02-sub">Tu promedio de glucosa de los últimos 3 meses</div>
+      <div class="sub" id="s02-sub">Tu promedio de glucosa<br>de los últimos 3 meses</div>
     </div>
   </div>
 
@@ -182,9 +186,10 @@
        style="left:40px;top:40px;width:1000px;height:1000px;visibility:hidden;opacity:0;">
     <div class="card-inner">
       <div class="badge" id="s03-badge">Criterio 3 de 3 · Intolerancia a la Glucosa</div>
-      <div class="stat-big" id="s03-stat">140–199 <span class="unit">mg/dL</span></div>
+      <div class="stat-big" id="s03-stat">140–199</div>
+      <div class="stat-unit" id="s03-unit">mg/dL</div>
       <span class="bar" id="s03-bar"></span>
-      <div class="sub" id="s03-sub">2 horas después de una carga oral de glucosa (75 g)</div>
+      <div class="sub" id="s03-sub">2 horas después de carga<br>oral de glucosa (75 g)</div>
     </div>
   </div>
 
@@ -193,7 +198,7 @@
     (function () {
       var tl = window.gsap.timeline({ paused: true });
 
-      function card(id, badgeId, statId, barId, extra1Id, extra1Delay, S) {
+      function card(id, badgeId, statId, unitId, barId, extra1Id, extra1Delay, S) {
         /* enter */
         tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'visible' }, S);
         tl.fromTo('.card-host[data-card-id="' + id + '"]',
@@ -204,9 +209,12 @@
         /* stat number */
         tl.fromTo('#' + statId, { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, S + 0.36);
+        /* unit */
+        tl.fromTo('#' + unitId, { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.36, ease: 'power2.out' }, S + 0.50);
         /* bar */
         tl.fromTo('#' + barId, { width: 0 },
-          { width: 480, duration: 0.48, ease: 'power2.out' }, S + 0.60);
+          { width: 820, duration: 0.50, ease: 'power2.out' }, S + 0.62);
         /* extra (ref-row or sub) */
         tl.fromTo('#' + extra1Id, { opacity: 0 },
           { opacity: 1, duration: 0.36, ease: 'power2.out' }, S + extra1Delay);
@@ -216,9 +224,9 @@
         tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'hidden' }, S + 4.0);
       }
 
-      card('sq01', 's01-badge', 's01-stat', 's01-bar', 's01-ref',  0.78, 0.5);
-      card('sq02', 's02-badge', 's02-stat', 's02-bar', 's02-sub',  0.76, 5.0);
-      card('sq03', 's03-badge', 's03-stat', 's03-bar', 's03-sub',  0.76, 9.5);
+      card('sq01', 's01-badge', 's01-stat', 's01-unit', 's01-bar', 's01-ref',  0.84, 0.5);
+      card('sq02', 's02-badge', 's02-stat', 's02-unit', 's02-bar', 's02-sub',  0.82, 5.0);
+      card('sq03', 's03-badge', 's03-stat', 's03-unit', 's03-bar', 's03-sub',  0.82, 9.5);
 
       window.__timelines = window.__timelines || {};
       window.__timelines['docpablo-criterios-sq'] = tl;

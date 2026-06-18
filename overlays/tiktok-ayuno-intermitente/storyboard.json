@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 3,
+  "composition": {
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "durationSeconds": 90,
+    "layout": "portrait",
+    "themeId": "docpablo",
+    "seed": 42
+  },
+  "videoTrack": {
+    "sourcePath": "input-video.mp4",
+    "startSec": 0,
+    "endSec": 90,
+    "bounds": { "x": 0, "y": 0, "width": 1080, "height": 1920 }
+  },
+  "subtitles": { "enabled": false },
+  "cards": [
+    {
+      "id": "card-01",
+      "intent": "Hook — present the honest medical take on intermittent fasting",
+      "startSec": 0.5,
+      "endSec": 5.0,
+      "accentIndex": 0,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "EVIDENCIA MÉDICA · DR. JUAN PABLO GONZÁLEZ",
+        "title": "Ayuno Intermitente",
+        "detail": "La verdad honesta en 90 segundos"
+      }
+    },
+    {
+      "id": "card-02",
+      "intent": "Science sources — Cochrane and BMJ, 99 studies reviewed in 2026",
+      "startSec": 6.0,
+      "endSec": 18.0,
+      "accentIndex": 1,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "LA CIENCIA DICE · 2026",
+        "badges": ["Cochrane", "BMJ"],
+        "stat": "99",
+        "statLabel": "estudios revisados"
+      }
+    },
+    {
+      "id": "card-03",
+      "intent": "Verdict — it works for weight loss but not better than just eating less",
+      "startSec": 19.0,
+      "endSec": 28.0,
+      "accentIndex": 0,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "EL VEREDICTO",
+        "checkLine": "Funciona para bajar de peso",
+        "vsLine": "Pero NO mejor que simplemente comer menos"
+      }
+    },
+    {
+      "id": "card-04",
+      "intent": "Honest nuance — easier than calorie counting for some patients",
+      "startSec": 29.0,
+      "endSec": 44.0,
+      "accentIndex": 0,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "EL MATIZ HONESTO",
+        "title": "Para algunos: MÁS FÁCIL",
+        "detail": "que contar calorías toda la vida"
+      }
+    },
+    {
+      "id": "card-05",
+      "intent": "Warning — you lose muscle too, and muscle drives your metabolism",
+      "startSec": 46.0,
+      "endSec": 58.0,
+      "accentIndex": 3,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "⚠ OJO CON ESTO",
+        "title": "No solo pierdes grasa",
+        "emphasis": "MÚSCULO",
+        "detail": "El músculo acelera tu metabolismo"
+      }
+    },
+    {
+      "id": "card-06",
+      "intent": "Solution — protein + strength training to protect muscle while fasting",
+      "startSec": 59.0,
+      "endSec": 70.0,
+      "accentIndex": 0,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "CÓMO HACERLO BIEN",
+        "item1": "Suficiente PROTEÍNA",
+        "item2": "Entrena tu FUERZA"
+      }
+    },
+    {
+      "id": "card-07",
+      "intent": "DocPablo branded close — evidence-based medicine, not trends",
+      "startSec": 71.0,
+      "endSec": 89.0,
+      "accentIndex": 0,
+      "zone": "lower-third",
+      "contentHints": {
+        "kicker": "SALUD CON EVIDENCIA · NO CON MODAS",
+        "handle": "@docpablo",
+        "tagline": "Dr. Juan Pablo González · Médico General",
+        "url": "docpablo.com"
+      }
+    }
+  ]
+}

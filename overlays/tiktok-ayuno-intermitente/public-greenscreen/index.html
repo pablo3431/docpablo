@@ -272,12 +272,27 @@
   style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;"
 >
 
-  <!-- ── CARD 01  Hook  [0.5 – 5.0s] ── -->
+  <!-- ── CARD 00  Prediabetes hook  [0.2 – 2.8s] ── -->
+  <div
+    class="card-host clip"
+    data-card-id="card-00"
+    data-start="0.2"
+    data-duration="2.6"
+    data-track-index="2"
+    style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
+  >
+    <div class="card-inner">
+      <div class="badge-kicker" id="c00-badge">Para ti</div>
+      <div class="hero" id="c00-hero">¿Tienes prediabetes?</div>
+    </div>
+  </div>
+
+  <!-- ── CARD 01  Hook  [3.2 – 6.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-01"
-    data-start="0.5"
-    data-duration="4.5"
+    data-start="3.2"
+    data-duration="2.8"
     data-track-index="2"
     style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;"
   >
@@ -435,21 +450,33 @@
 
       var tl = window.gsap.timeline({ paused: true });
 
-      /* ── CARD 01  [0.5 – 5.0s] ── */
-      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'visible' }, 0.5);
+      /* ── CARD 00  [0.2 – 2.8s] ── */
+      tl.set('.card-host[data-card-id="card-00"]', { visibility: 'visible' }, 0.2);
+      tl.fromTo('.card-host[data-card-id="card-00"]',
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 0.2);
+      tl.fromTo('#c00-badge',
+        { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.5)' }, 0.42);
+      tl.fromTo('#c00-hero',
+        { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power2.out' }, 0.58);
+      tl.to('.card-host[data-card-id="card-00"]',
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 2.4);
+      tl.set('.card-host[data-card-id="card-00"]', { visibility: 'hidden' }, 2.8);
+
+      /* ── CARD 01  [3.2 – 6.0s] ── */
+      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'visible' }, 3.2);
       tl.fromTo('.card-host[data-card-id="card-01"]',
-        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 0.5);
+        { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out' }, 3.2);
       tl.fromTo('#c01-badge',
-        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0.72);
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 3.42);
       tl.fromTo('#c01-hero',
-        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.88);
+        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 3.58);
       tl.fromTo('#c01-bar',
-        { width: 0 }, { width: 400, duration: 0.5, ease: 'power2.out' }, 1.26);
+        { width: 0 }, { width: 400, duration: 0.45, ease: 'power2.out' }, 3.96);
       tl.fromTo('#c01-sub',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.52);
+        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 4.22);
       tl.to('.card-host[data-card-id="card-01"]',
-        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 4.6);
-      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'hidden' }, 5.0);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 5.6);
+      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'hidden' }, 6.0);
 
       /* ── CARD 02  [6.0 – 18.0s] ── */
       tl.set('.card-host[data-card-id="card-02"]', { visibility: 'visible' }, 6.0);

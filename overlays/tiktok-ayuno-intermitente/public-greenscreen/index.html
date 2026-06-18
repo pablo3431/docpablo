@@ -17,15 +17,12 @@
     }
 
     :root {
-      --accent-0: #4DB89A;
-      --accent-1: #2D7B6B;
-      --accent-2: #F2EFE8;
-      --accent-3: #E87C0C;
-      --accent-4: #1B3A4B;
-      --text: #FFFFFF;
-      --text-muted: rgba(255, 255, 255, 0.62);
-      /* Fully opaque card backgrounds — no rgba transparency */
-      --card-bg: #0D2533;
+      --green: #4DB89A;
+      --green-bg: #EAF7F2;
+      --orange: #E87C0C;
+      --orange-bg: #FFF3E8;
+      --dark: #1B1B1B;
+      --muted: #6B7280;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -34,7 +31,6 @@
       margin: 0; padding: 0;
       width: 100%; height: 100%;
       overflow: hidden;
-      /* MAGENTA chroma key — safe with the mint-green brand accent */
       background: #FF00FF;
       font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     }
@@ -42,16 +38,224 @@
     .card-host {
       position: absolute;
       pointer-events: none;
+      overflow: visible;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 28px;
+      box-shadow: 0 12px 64px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 52px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
       overflow: hidden;
     }
-    .card-host .card {
-      position: relative;
-      width: 100%; height: 100%;
-      overflow: hidden;
+
+    /* Kicker badge pill */
+    .badge-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 11px 26px;
+      border-radius: 100px;
+      align-self: flex-start;
+      opacity: 0;
+      white-space: nowrap;
     }
-    .card-host .char {
-      display: inline-block;
-      visibility: visible;
+    .badge-kicker.orange { background: var(--orange); }
+
+    /* Hero headline */
+    .hero {
+      font-size: 76px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      opacity: 0;
+    }
+    .hero .accent { color: var(--green); display: block; }
+    .hero .accent-orange { color: var(--orange); }
+
+    /* Smaller hero for cards with more items */
+    .hero-sm {
+      font-size: 58px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+
+    /* Big isolated word */
+    .word-pop {
+      font-size: 104px;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      opacity: 0;
+    }
+
+    /* Sub / body text */
+    .sub-text {
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.45;
+      opacity: 0;
+    }
+
+    /* Green accent underline bar */
+    .accent-bar {
+      display: block;
+      height: 5px;
+      background: var(--green);
+      border-radius: 3px;
+      width: 0;
+    }
+
+    /* Pill badges row (Cochrane / BMJ) */
+    .pill-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green-bg);
+      border: 2.5px solid var(--green);
+      color: #1B6B52;
+      font-size: 26px;
+      font-weight: 800;
+      padding: 10px 26px;
+      border-radius: 14px;
+    }
+
+    /* Stat number row */
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      opacity: 0;
+    }
+    .stat-number {
+      font-size: 116px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+    .stat-label {
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* Verdict rows */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+    }
+    .vs-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      opacity: 0;
+    }
+    .icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .icon-check { background: var(--green); color: #fff; }
+    .icon-x { background: var(--orange-bg); color: var(--orange); }
+    .row-text {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .row-text.muted {
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .row-text strong { color: var(--orange); font-weight: 800; }
+
+    /* Bullet items */
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      opacity: 0;
+    }
+    .bullet-diamond {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: var(--green);
+      border-radius: 4px;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .bullet-text {
+      font-size: 46px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .bullet-text strong {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    /* Handle / branding */
+    .handle-text {
+      font-size: 90px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      opacity: 0;
+    }
+    .tagline-text {
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--muted);
+      opacity: 0;
+    }
+    .url-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 12px 30px;
+      border-radius: 100px;
+      align-self: flex-start;
+      opacity: 0;
     }
   </style>
 </head>
@@ -67,537 +271,141 @@
   style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;"
 >
 
-  <!-- No video layer — magenta background shows through everywhere except card area -->
-
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 01 — Hook  [0.5 – 5.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 01  Hook  [0.5 – 5.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-01"
-    data-start="0.5000"
-    data-duration="4.5000"
+    data-start="0.5"
+    data-duration="4.5"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-01">
-      <style>
-        .card[data-card-id="card-01"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          /* Fully opaque gradient — no rgba */
-          background: linear-gradient(130deg, #0D2533 0%, #163C2E 100%);
-          border-top: 4px solid var(--accent-0);
-          gap: 12px;
-        }
-        .card[data-card-id="card-01"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-01"] .title {
-          font-size: 68px;
-          font-weight: 800;
-          color: var(--text);
-          line-height: 1.05;
-          letter-spacing: -0.01em;
-          opacity: 0;
-        }
-        .card[data-card-id="card-01"] .accent-bar {
-          display: block;
-          width: 0;
-          height: 4px;
-          background: var(--accent-0);
-          border-radius: 2px;
-        }
-        .card[data-card-id="card-01"] .detail {
-          font-size: 28px;
-          font-weight: 400;
-          color: var(--text-muted);
-          opacity: 0;
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-01-kicker">Evidencia médica · Dr. Juan Pablo González</div>
-        <div class="title" id="card-01-title">Ayuno Intermitente</div>
-        <span class="accent-bar" id="card-01-bar"></span>
-        <div class="detail" id="card-01-detail">La verdad honesta en 90 segundos</div>
-      </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c01-badge">Evidencia Médica · Dr. Juan Pablo González</div>
+      <div class="hero" id="c01-hero">Ayuno Intermitente</div>
+      <span class="accent-bar" id="c01-bar"></span>
+      <div class="sub-text" id="c01-sub">La verdad honesta en 90 segundos</div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 02 — La Ciencia  [6.0 – 18.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 02  La Ciencia  [6.0 – 18.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-02"
-    data-start="6.0000"
-    data-duration="12.0000"
+    data-start="6.0"
+    data-duration="12.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-02">
-      <style>
-        .card[data-card-id="card-02"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: #0D2533;
-          border-top: 4px solid var(--accent-0);
-          gap: 14px;
-        }
-        .card[data-card-id="card-02"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-02"] .badges {
-          display: flex;
-          gap: 14px;
-          align-items: center;
-          opacity: 0;
-        }
-        .card[data-card-id="card-02"] .badge {
-          display: inline-flex;
-          align-items: center;
-          background: rgba(77, 184, 154, 0.14);
-          border: 1.5px solid var(--accent-0);
-          border-radius: 10px;
-          padding: 7px 22px;
-          font-size: 26px;
-          font-weight: 800;
-          color: var(--text);
-          letter-spacing: 0.04em;
-        }
-        .card[data-card-id="card-02"] .stat-row {
-          display: flex;
-          align-items: baseline;
-          gap: 16px;
-          opacity: 0;
-        }
-        .card[data-card-id="card-02"] .stat-number {
-          font-size: 96px;
-          font-weight: 900;
-          color: var(--text);
-          line-height: 1;
-          letter-spacing: -0.03em;
-        }
-        .card[data-card-id="card-02"] .stat-label {
-          font-size: 30px;
-          font-weight: 500;
-          color: var(--text-muted);
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-02-kicker">La ciencia dice · 2026</div>
-        <div class="badges" id="card-02-badges">
-          <div class="badge">Cochrane</div>
-          <div class="badge">BMJ</div>
-        </div>
-        <div class="stat-row" id="card-02-stat-row">
-          <span class="stat-number" id="card-02-count">0</span>
-          <span class="stat-label">estudios revisados</span>
-        </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c02-badge">La Ciencia Dice · 2026</div>
+      <div class="pill-row" id="c02-pills">
+        <div class="pill">Cochrane</div>
+        <div class="pill">BMJ</div>
+      </div>
+      <div class="stat-row" id="c02-stat">
+        <span class="stat-number" id="c02-count">0</span>
+        <span class="stat-label">estudios revisados</span>
       </div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 03 — El Veredicto  [19.0 – 28.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 03  El Veredicto  [19.0 – 28.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-03"
-    data-start="19.0000"
-    data-duration="9.0000"
+    data-start="19.0"
+    data-duration="9.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-03">
-      <style>
-        .card[data-card-id="card-03"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: #0D2533;
-          border-top: 4px solid var(--accent-0);
-          gap: 18px;
-        }
-        .card[data-card-id="card-03"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-03"] .check-row {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          clip-path: inset(0 100% 0 0);
-        }
-        .card[data-card-id="card-03"] .icon-circle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 48px; height: 48px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          font-size: 22px;
-          font-weight: 900;
-        }
-        .card[data-card-id="card-03"] .icon-check {
-          background: var(--accent-0);
-          color: #fff;
-        }
-        .card[data-card-id="card-03"] .icon-eq {
-          background: rgba(255,255,255,0.10);
-          color: var(--text-muted);
-          font-size: 20px;
-        }
-        .card[data-card-id="card-03"] .check-text {
-          font-size: 32px;
-          font-weight: 700;
-          color: var(--text);
-        }
-        .card[data-card-id="card-03"] .vs-row {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          opacity: 0;
-        }
-        .card[data-card-id="card-03"] .vs-text {
-          font-size: 26px;
-          font-weight: 400;
-          color: var(--text-muted);
-          line-height: 1.35;
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-03-kicker">El veredicto</div>
-        <div class="check-row" id="card-03-check">
-          <div class="icon-circle icon-check">✓</div>
-          <div class="check-text">Funciona para bajar de peso</div>
-        </div>
-        <div class="vs-row" id="card-03-vs">
-          <div class="icon-circle icon-eq">≠</div>
-          <div class="vs-text">Pero NO mejor que simplemente comer menos</div>
-        </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c03-badge">El Veredicto</div>
+      <div class="check-row" id="c03-check">
+        <div class="icon-circle icon-check">✓</div>
+        <div class="row-text">Funciona para bajar de peso</div>
+      </div>
+      <div class="vs-row" id="c03-vs">
+        <div class="icon-circle icon-x">✕</div>
+        <div class="row-text muted">Pero <strong>NO mejor</strong> que simplemente comer menos</div>
       </div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 04 — El Matiz Honesto  [29.0 – 44.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 04  El Matiz Honesto  [29.0 – 44.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-04"
-    data-start="29.0000"
-    data-duration="15.0000"
+    data-start="29.0"
+    data-duration="15.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-04">
-      <style>
-        .card[data-card-id="card-04"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: linear-gradient(130deg, #0D2533 0%, #123A2C 100%);
-          border-top: 4px solid var(--accent-0);
-          gap: 12px;
-        }
-        .card[data-card-id="card-04"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-04"] .title {
-          font-size: 58px;
-          font-weight: 900;
-          color: var(--accent-0);
-          line-height: 1.05;
-          letter-spacing: -0.01em;
-        }
-        .card[data-card-id="card-04"] .title .char {
-          display: inline-block;
-          opacity: 0;
-        }
-        .card[data-card-id="card-04"] .accent-bar {
-          display: block;
-          width: 0;
-          height: 4px;
-          background: var(--accent-0);
-          border-radius: 2px;
-        }
-        .card[data-card-id="card-04"] .sub {
-          font-size: 28px;
-          font-weight: 400;
-          color: var(--text-muted);
-          opacity: 0;
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-04-kicker">El matiz honesto</div>
-        <div class="title" id="card-04-title"><span class="char">P</span><span class="char">a</span><span class="char">r</span><span class="char">a</span><span class="char">&nbsp;</span><span class="char">a</span><span class="char">l</span><span class="char">g</span><span class="char">u</span><span class="char">n</span><span class="char">o</span><span class="char">s</span><span class="char">:&nbsp;</span><span class="char">M</span><span class="char">Á</span><span class="char">S</span><span class="char">&nbsp;</span><span class="char">F</span><span class="char">Á</span><span class="char">C</span><span class="char">I</span><span class="char">L</span></div>
-        <span class="accent-bar" id="card-04-bar"></span>
-        <div class="sub" id="card-04-sub">que contar calorías toda la vida</div>
-      </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c04-badge">El Matiz Honesto</div>
+      <div class="hero" id="c04-hero">Para algunos: <span class="accent">MÁS FÁCIL</span></div>
+      <span class="accent-bar" id="c04-bar"></span>
+      <div class="sub-text" id="c04-sub">que contar calorías toda la vida</div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 05 — Advertencia Músculo  [46.0 – 58.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 05  Advertencia Músculo  [46.0 – 58.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-05"
-    data-start="46.0000"
-    data-duration="12.0000"
+    data-start="46.0"
+    data-duration="12.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-05">
-      <style>
-        .card[data-card-id="card-05"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: #140E08;
-          border-top: 4px solid var(--accent-3);
-          gap: 10px;
-        }
-        .card[data-card-id="card-05"] .warning-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          opacity: 0;
-        }
-        .card[data-card-id="card-05"] .warning-icon {
-          font-size: 30px;
-          line-height: 1;
-        }
-        .card[data-card-id="card-05"] .warning-kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-3);
-        }
-        .card[data-card-id="card-05"] .title {
-          font-size: 38px;
-          font-weight: 600;
-          color: var(--text);
-          opacity: 0;
-        }
-        .card[data-card-id="card-05"] .muscle-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-        .card[data-card-id="card-05"] .muscle-label {
-          font-size: 22px;
-          font-weight: 400;
-          color: var(--text-muted);
-        }
-        .card[data-card-id="card-05"] .muscle-word {
-          display: inline-block;
-          font-size: 80px;
-          font-weight: 900;
-          color: var(--accent-3);
-          line-height: 1.0;
-          letter-spacing: -0.02em;
-          opacity: 0;
-        }
-        .card[data-card-id="card-05"] .detail {
-          font-size: 24px;
-          font-weight: 400;
-          color: var(--text-muted);
-          opacity: 0;
-        }
-      </style>
-      <div class="root">
-        <div class="warning-row" id="card-05-warning-row">
-          <span class="warning-icon">⚠️</span>
-          <span class="warning-kicker">Ojo con esto</span>
-        </div>
-        <div class="title" id="card-05-title">No solo pierdes grasa</div>
-        <div class="muscle-stack">
-          <span class="muscle-label">También puedes perder</span>
-          <span class="muscle-word" id="card-05-muscle">MÚSCULO</span>
-        </div>
-        <div class="detail" id="card-05-detail">El músculo acelera tu metabolismo</div>
-      </div>
+    <div class="card-inner">
+      <div class="badge-kicker orange" id="c05-badge">⚠ Ojo Con Esto</div>
+      <div class="hero-sm" id="c05-hero">No solo pierdes grasa.</div>
+      <div class="word-pop" id="c05-muscle">MÚSCULO</div>
+      <div class="sub-text" id="c05-sub">El músculo acelera tu metabolismo.</div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 06 — La Solución  [59.0 – 70.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 06  La Solución  [59.0 – 70.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-06"
-    data-start="59.0000"
-    data-duration="11.0000"
+    data-start="59.0"
+    data-duration="11.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-06">
-      <style>
-        .card[data-card-id="card-06"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: #0D2533;
-          border-top: 4px solid var(--accent-0);
-          gap: 18px;
-        }
-        .card[data-card-id="card-06"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-06"] .item {
-          display: flex;
-          align-items: center;
-          gap: 18px;
-          opacity: 0;
-        }
-        .card[data-card-id="card-06"] .item-num {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 44px; height: 44px;
-          border-radius: 50%;
-          background: var(--accent-0);
-          font-size: 20px;
-          font-weight: 900;
-          color: #fff;
-          flex-shrink: 0;
-        }
-        .card[data-card-id="card-06"] .item-text {
-          font-size: 34px;
-          font-weight: 600;
-          color: var(--text);
-        }
-        .card[data-card-id="card-06"] .item-text strong {
-          color: var(--accent-0);
-          font-weight: 800;
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-06-kicker">Cómo hacerlo bien</div>
-        <div class="item" id="card-06-item1">
-          <div class="item-num">1</div>
-          <div class="item-text">Suficiente <strong>PROTEÍNA</strong></div>
-        </div>
-        <div class="item" id="card-06-item2">
-          <div class="item-num">2</div>
-          <div class="item-text">Entrena tu <strong>FUERZA</strong></div>
-        </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c06-badge">Cómo Hacerlo Bien</div>
+      <div class="bullet-item" id="c06-item1">
+        <span class="bullet-diamond"></span>
+        <span class="bullet-text">Suficiente <strong>PROTEÍNA</strong></span>
+      </div>
+      <div class="bullet-item" id="c06-item2">
+        <span class="bullet-diamond"></span>
+        <span class="bullet-text">Entrena tu <strong>FUERZA</strong></span>
       </div>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────────────────────
-       CARD 07 — Cierre DocPablo  [71.0 – 89.0s]
-  ───────────────────────────────────────────────────────────────── -->
+  <!-- ── CARD 07  Cierre DocPablo  [71.0 – 89.0s] ── -->
   <div
     class="card-host clip"
     data-card-id="card-07"
-    data-start="71.0000"
-    data-duration="18.0000"
+    data-start="71.0"
+    data-duration="18.0"
     data-track-index="2"
-    style="left:0;top:1344px;width:1080px;height:576px;visibility:hidden;opacity:0;"
+    style="left:40px;top:1100px;width:1000px;height:780px;visibility:hidden;opacity:0;"
   >
-    <div class="card" data-card-id="card-07">
-      <style>
-        .card[data-card-id="card-07"] .root {
-          width: 100%; height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 32px 44px;
-          background: linear-gradient(130deg, #0D2533 0%, #163C2E 100%);
-          border-top: 4px solid var(--accent-0);
-          gap: 10px;
-        }
-        .card[data-card-id="card-07"] .kicker {
-          font-size: 19px;
-          font-weight: 700;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-        .card[data-card-id="card-07"] .handle {
-          font-size: 72px;
-          font-weight: 900;
-          color: var(--text);
-          line-height: 1.0;
-          letter-spacing: -0.02em;
-          opacity: 0;
-        }
-        .card[data-card-id="card-07"] .accent-bar {
-          display: block;
-          width: 0;
-          height: 4px;
-          background: var(--accent-0);
-          border-radius: 2px;
-        }
-        .card[data-card-id="card-07"] .tagline {
-          font-size: 26px;
-          font-weight: 400;
-          color: var(--text-muted);
-          opacity: 0;
-        }
-        .card[data-card-id="card-07"] .url {
-          font-size: 22px;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-          color: var(--accent-0);
-          opacity: 0;
-        }
-      </style>
-      <div class="root">
-        <div class="kicker" id="card-07-kicker">Salud con evidencia · No con modas</div>
-        <div class="handle" id="card-07-handle">@docpablo</div>
-        <span class="accent-bar" id="card-07-bar"></span>
-        <div class="tagline" id="card-07-tagline">Dr. Juan Pablo González · Médico General</div>
-        <div class="url" id="card-07-url">docpablo.com</div>
-      </div>
+    <div class="card-inner">
+      <div class="badge-kicker" id="c07-badge">Salud Con Evidencia · No Con Modas</div>
+      <div class="handle-text" id="c07-handle">@docpablo</div>
+      <span class="accent-bar" id="c07-bar"></span>
+      <div class="tagline-text" id="c07-tagline">Dr. Juan Pablo González · Médico General</div>
+      <div class="url-badge" id="c07-url">docpablo.com</div>
     </div>
   </div>
 
-  <!-- GSAP Master Timeline (identical to original) -->
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
@@ -605,131 +413,128 @@
         if (typeof fmt === 'string' && /^\.[0-9]+f$/.test(fmt)) {
           return Number(v).toFixed(Number(fmt.slice(1, -1)));
         }
-        if (fmt === ',d') return Math.round(v).toLocaleString();
         return String(Math.round(v));
       };
 
       var tl = window.gsap.timeline({ paused: true });
 
       /* ── CARD 01  [0.5 – 5.0s] ── */
-      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'visible' }, 0.5000);
+      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'visible' }, 0.5);
       tl.fromTo('.card-host[data-card-id="card-01"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.5000);
-      tl.fromTo('.card[data-card-id="card-01"] #card-01-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.6000);
-      tl.fromTo('.card[data-card-id="card-01"] #card-01-title',
-        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.8000);
-      tl.fromTo('.card[data-card-id="card-01"] #card-01-bar',
-        { width: 0 }, { width: 340, duration: 0.45, ease: 'power2.out' }, 1.2000);
-      tl.fromTo('.card[data-card-id="card-01"] #card-01-detail',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.4000);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.5);
+      tl.fromTo('#c01-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0.72);
+      tl.fromTo('#c01-hero',
+        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.88);
+      tl.fromTo('#c01-bar',
+        { width: 0 }, { width: 380, duration: 0.5, ease: 'power2.out' }, 1.25);
+      tl.fromTo('#c01-sub',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.5);
       tl.to('.card-host[data-card-id="card-01"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 4.6000);
-      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'hidden' }, 5.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 4.6);
+      tl.set('.card-host[data-card-id="card-01"]', { visibility: 'hidden' }, 5.0);
 
       /* ── CARD 02  [6.0 – 18.0s] ── */
-      tl.set('.card-host[data-card-id="card-02"]', { visibility: 'visible' }, 6.0000);
+      tl.set('.card-host[data-card-id="card-02"]', { visibility: 'visible' }, 6.0);
       tl.fromTo('.card-host[data-card-id="card-02"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 6.0000);
-      tl.fromTo('.card[data-card-id="card-02"] #card-02-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 6.1000);
-      tl.fromTo('.card[data-card-id="card-02"] #card-02-badges',
-        { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 6.3000);
-      tl.fromTo('.card[data-card-id="card-02"] #card-02-stat-row',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 6.7000);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 6.0);
+      tl.fromTo('#c02-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 6.22);
+      tl.fromTo('#c02-pills',
+        { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 6.42);
+      tl.fromTo('#c02-stat',
+        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 6.78);
       (function () {
         var o = { v: 0 };
         tl.to(o, {
-          v: 99, duration: 1.2, ease: 'power2.out',
+          v: 99, duration: 1.3, ease: 'power2.out',
           onUpdate: function () {
-            var el = document.querySelector('.card[data-card-id="card-02"] #card-02-count');
+            var el = document.querySelector('#c02-count');
             if (el) el.textContent = window.__fmt(o.v, '.0f');
           }
-        }, 6.7000);
+        }, 6.78);
       }());
       tl.to('.card-host[data-card-id="card-02"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 17.6000);
-      tl.set('.card-host[data-card-id="card-02"]', { visibility: 'hidden' }, 18.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 17.6);
+      tl.set('.card-host[data-card-id="card-02"]', { visibility: 'hidden' }, 18.0);
 
       /* ── CARD 03  [19.0 – 28.0s] ── */
-      tl.set('.card-host[data-card-id="card-03"]', { visibility: 'visible' }, 19.0000);
+      tl.set('.card-host[data-card-id="card-03"]', { visibility: 'visible' }, 19.0);
       tl.fromTo('.card-host[data-card-id="card-03"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 19.0000);
-      tl.fromTo('.card[data-card-id="card-03"] #card-03-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 19.1000);
-      tl.fromTo('.card[data-card-id="card-03"] #card-03-check',
-        { clipPath: 'inset(0 100% 0 0)' },
-        { clipPath: 'inset(0 0% 0 0)', duration: 0.6, ease: 'power2.inOut' }, 19.4000);
-      tl.fromTo('.card[data-card-id="card-03"] #card-03-vs',
-        { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 20.1000);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 19.0);
+      tl.fromTo('#c03-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 19.22);
+      tl.fromTo('#c03-check',
+        { opacity: 0, clipPath: 'inset(0 100% 0 0)' },
+        { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: 0.65, ease: 'power2.inOut' }, 19.48);
+      tl.fromTo('#c03-vs',
+        { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 20.22);
       tl.to('.card-host[data-card-id="card-03"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 27.6000);
-      tl.set('.card-host[data-card-id="card-03"]', { visibility: 'hidden' }, 28.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 27.6);
+      tl.set('.card-host[data-card-id="card-03"]', { visibility: 'hidden' }, 28.0);
 
       /* ── CARD 04  [29.0 – 44.0s] ── */
-      tl.set('.card-host[data-card-id="card-04"]', { visibility: 'visible' }, 29.0000);
+      tl.set('.card-host[data-card-id="card-04"]', { visibility: 'visible' }, 29.0);
       tl.fromTo('.card-host[data-card-id="card-04"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 29.0000);
-      tl.fromTo('.card[data-card-id="card-04"] #card-04-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 29.1000);
-      tl.from('.card[data-card-id="card-04"] #card-04-title .char',
-        { opacity: 0, y: 10, scale: 0.78, duration: 0.55, ease: 'power2.out', stagger: 0.030 }, 29.3000);
-      tl.fromTo('.card[data-card-id="card-04"] #card-04-bar',
-        { width: 0 }, { width: 400, duration: 0.45, ease: 'power2.out' }, 30.1333);
-      tl.fromTo('.card[data-card-id="card-04"] #card-04-sub',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 30.4333);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 29.0);
+      tl.fromTo('#c04-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 29.22);
+      tl.fromTo('#c04-hero',
+        { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 29.42);
+      tl.fromTo('#c04-bar',
+        { width: 0 }, { width: 420, duration: 0.5, ease: 'power2.out' }, 29.85);
+      tl.fromTo('#c04-sub',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 30.12);
       tl.to('.card-host[data-card-id="card-04"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 43.6000);
-      tl.set('.card-host[data-card-id="card-04"]', { visibility: 'hidden' }, 44.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 43.6);
+      tl.set('.card-host[data-card-id="card-04"]', { visibility: 'hidden' }, 44.0);
 
       /* ── CARD 05  [46.0 – 58.0s] ── */
-      tl.set('.card-host[data-card-id="card-05"]', { visibility: 'visible' }, 46.0000);
+      tl.set('.card-host[data-card-id="card-05"]', { visibility: 'visible' }, 46.0);
       tl.fromTo('.card-host[data-card-id="card-05"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 46.0000);
-      tl.fromTo('.card[data-card-id="card-05"] #card-05-warning-row',
-        { opacity: 0, scale: 0.72 },
-        { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' }, 46.1000);
-      tl.fromTo('.card[data-card-id="card-05"] #card-05-title',
-        { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 46.4000);
-      tl.fromTo('.card[data-card-id="card-05"] #card-05-muscle',
-        { opacity: 0, scale: 0.6 },
-        { opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.8)' }, 46.8000);
-      tl.fromTo('.card[data-card-id="card-05"] #card-05-detail',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 47.2667);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 46.0);
+      tl.fromTo('#c05-badge',
+        { opacity: 0, scale: 0.78 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(1.5)' }, 46.22);
+      tl.fromTo('#c05-hero',
+        { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 46.46);
+      tl.fromTo('#c05-muscle',
+        { opacity: 0, scale: 0.65 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.8)' }, 46.86);
+      tl.fromTo('#c05-sub',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 47.3);
       tl.to('.card-host[data-card-id="card-05"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 57.6000);
-      tl.set('.card-host[data-card-id="card-05"]', { visibility: 'hidden' }, 58.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 57.6);
+      tl.set('.card-host[data-card-id="card-05"]', { visibility: 'hidden' }, 58.0);
 
       /* ── CARD 06  [59.0 – 70.0s] ── */
-      tl.set('.card-host[data-card-id="card-06"]', { visibility: 'visible' }, 59.0000);
+      tl.set('.card-host[data-card-id="card-06"]', { visibility: 'visible' }, 59.0);
       tl.fromTo('.card-host[data-card-id="card-06"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 59.0000);
-      tl.fromTo('.card[data-card-id="card-06"] #card-06-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 59.1000);
-      tl.fromTo('.card[data-card-id="card-06"] #card-06-item1',
-        { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 59.4000);
-      tl.fromTo('.card[data-card-id="card-06"] #card-06-item2',
-        { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 59.9000);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 59.0);
+      tl.fromTo('#c06-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 59.22);
+      tl.fromTo('#c06-item1',
+        { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 59.52);
+      tl.fromTo('#c06-item2',
+        { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 60.02);
       tl.to('.card-host[data-card-id="card-06"]',
-        { opacity: 0, duration: 0.4, ease: 'power2.in' }, 69.6000);
-      tl.set('.card-host[data-card-id="card-06"]', { visibility: 'hidden' }, 70.0000);
+        { opacity: 0, y: -28, duration: 0.4, ease: 'power2.in' }, 69.6);
+      tl.set('.card-host[data-card-id="card-06"]', { visibility: 'hidden' }, 70.0);
 
       /* ── CARD 07  [71.0 – 89.0s] ── */
-      tl.set('.card-host[data-card-id="card-07"]', { visibility: 'visible' }, 71.0000);
+      tl.set('.card-host[data-card-id="card-07"]', { visibility: 'visible' }, 71.0);
       tl.fromTo('.card-host[data-card-id="card-07"]',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 71.0000);
-      tl.fromTo('.card[data-card-id="card-07"] #card-07-kicker',
-        { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 71.1000);
-      tl.fromTo('.card[data-card-id="card-07"] #card-07-handle',
-        { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 71.3000);
-      tl.fromTo('.card[data-card-id="card-07"] #card-07-bar',
-        { width: 0 }, { width: 440, duration: 0.5, ease: 'power2.out' }, 71.7333);
-      tl.fromTo('.card[data-card-id="card-07"] #card-07-tagline',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.0333);
-      tl.fromTo('.card[data-card-id="card-07"] #card-07-url',
-        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.4333);
+        { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 71.0);
+      tl.fromTo('#c07-badge',
+        { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 71.22);
+      tl.fromTo('#c07-handle',
+        { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 71.42);
+      tl.fromTo('#c07-bar',
+        { width: 0 }, { width: 480, duration: 0.5, ease: 'power2.out' }, 71.85);
+      tl.fromTo('#c07-tagline',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.12);
+      tl.fromTo('#c07-url',
+        { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 72.42);
       tl.to('.card-host[data-card-id="card-07"]',
-        { opacity: 0, duration: 0.5, ease: 'power2.in' }, 88.5000);
+        { opacity: 0, y: -28, duration: 0.5, ease: 'power2.in' }, 88.5);
 
       window.__timelines = window.__timelines || {};
       window.__timelines['docpablo-ayuno-gs'] = tl;

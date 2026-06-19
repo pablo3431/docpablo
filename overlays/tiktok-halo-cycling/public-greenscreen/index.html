@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-400-latin.woff2') format('woff2');
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-700-latin.woff2') format('woff2');
+      font-weight: 700;
+      font-display: block;
+    }
+
+    :root {
+      --green:     #4DB89A;
+      --green-bg:  #EAF7F2;
+      --orange:    #E87C0C;
+      --dark:      #1B1B1B;
+      --muted:     #6B7280;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #FF00FF;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .card-host {
+      position: absolute;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .card-inner {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: #FFFFFF;
+      border-radius: 26px;
+      box-shadow: 0 10px 56px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 38px 46px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ── Badge ── */
+    .badge-kicker {
+      display: inline-flex;
+      align-items: center;
+      background: var(--orange);
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border-radius: 100px;
+      align-self: flex-start;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    /* ── Cycling text wrapper ───────────────────────────
+       Fixed height = 2 lines of hero-sm (68 × 1.06 × 2).
+       overflow:hidden clips the slide animation cleanly.   */
+    .cycle-wrap {
+      position: relative;
+      height: 148px;
+      overflow: hidden;
+    }
+
+    /* Each phrase sits at the same position; GSAP manages
+       which one is visible at any moment.                  */
+    .cycle-item {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      font-size: 68px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      opacity: 0;          /* GSAP controls all visibility */
+    }
+
+    /* ── Progress dots ── */
+    .cycle-dots {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      /* d2 and d3 start at opacity:0.25 via inline style  */
+    }
+  </style>
+</head>
+<body>
+<div
+  id="stage"
+  data-composition-id="docpablo-halo-cycling-gs"
+  data-start="0"
+  data-duration="5"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+  style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;"
+>
+
+  <div class="card-host clip"
+       data-card-id="cycle"
+       data-start="0.5"
+       data-duration="4.0"
+       data-track-index="2"
+       style="left:36px;top:1180px;width:1008px;height:700px;visibility:hidden;opacity:0;">
+    <div class="card-inner">
+
+      <!-- Badge -->
+      <div class="badge-kicker" id="cy-badge">Los picos de azúcar llevan a…</div>
+
+      <!-- Cycling phrases — all start invisible, GSAP animates each in turn -->
+      <div class="cycle-wrap">
+        <div class="cycle-item" id="cy-t1">Resistencia<br>a la insulina</div>
+        <div class="cycle-item" id="cy-t2">Prediabetes</div>
+        <div class="cycle-item" id="cy-t3">…u otras<br>condiciones</div>
+      </div>
+
+      <!-- Progress dots: d1 starts active, d2 & d3 dimmed -->
+      <div class="cycle-dots">
+        <span class="dot" id="cy-d1"></span>
+        <span class="dot" id="cy-d2" style="opacity:0.25;"></span>
+        <span class="dot" id="cy-d3" style="opacity:0.25;"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      var tl = window.gsap.timeline({ paused: true });
+      var S  = 0.5; /* card start time */
+
+      /*
+       * Timing within the 4-second card:
+       *
+       *   S+0.00  card slides up & fades in
+       *   S+0.18  badge pops in
+       *   S+0.30  phrase 1 slides in     ─┐
+       *   S+1.44  phrase 1 out / 2 in    ─┤  each phrase ≈ 1.14 s
+       *   S+2.58  phrase 2 out / 3 in    ─┘
+       *   S+3.72  card slides out (exit)
+       *   S+4.00  hidden
+       */
+
+      /* ── Card enter ── */
+      tl.set('.card-host[data-card-id="cycle"]', { visibility: 'visible' }, S);
+      tl.fromTo('.card-host[data-card-id="cycle"]',
+        { opacity: 0, y: 64 },
+        { opacity: 1, y: 0, duration: 0.44, ease: 'power3.out' }, S);
+
+      /* ── Badge ── */
+      tl.fromTo('#cy-badge',
+        { opacity: 0, scale: 0.82 },
+        { opacity: 1, scale: 1, duration: 0.28, ease: 'back.out(1.5)' }, S + 0.18);
+
+      /* ── Phrase 1: Resistencia a la insulina ── */
+      tl.fromTo('#cy-t1',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.34, ease: 'power2.out' }, S + 0.30);
+
+      /* ── Transition 1 → 2 ── */
+      tl.to('#cy-t1',
+        { opacity: 0, y: -20, duration: 0.28, ease: 'power2.in' }, S + 1.44);
+      tl.fromTo('#cy-t2',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.34, ease: 'power2.out' }, S + 1.44);
+      /* dots: d1 dim, d2 active */
+      tl.to('#cy-d1', { opacity: 0.25, duration: 0.22 }, S + 1.44);
+      tl.to('#cy-d2', { opacity: 1.0,  duration: 0.22 }, S + 1.44);
+
+      /* ── Transition 2 → 3 ── */
+      tl.to('#cy-t2',
+        { opacity: 0, y: -20, duration: 0.28, ease: 'power2.in' }, S + 2.58);
+      tl.fromTo('#cy-t3',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.34, ease: 'power2.out' }, S + 2.58);
+      /* dots: d2 dim, d3 active */
+      tl.to('#cy-d2', { opacity: 0.25, duration: 0.22 }, S + 2.58);
+      tl.to('#cy-d3', { opacity: 1.0,  duration: 0.22 }, S + 2.58);
+
+      /* ── Card exit ── */
+      tl.to('.card-host[data-card-id="cycle"]',
+        { opacity: 0, y: -28, duration: 0.38, ease: 'power2.in' }, S + 3.72);
+      tl.set('.card-host[data-card-id="cycle"]', { visibility: 'hidden' }, S + 4.0);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['docpablo-halo-cycling-gs'] = tl;
+    }());
+  </script>
+</div>
+</body>
+</html>

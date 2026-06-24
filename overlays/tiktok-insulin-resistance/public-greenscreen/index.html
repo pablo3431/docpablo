@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#FF00FF; }
+.card-host { position:absolute; pointer-events:none; overflow:visible; }
+</style>
+</head>
+<body>
+<div id="stage"
+  data-composition-id="docpablo-insulin-resistance-gs"
+  data-start="0"
+  data-duration="49.0"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+  style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;">
+
+<!--
+  TIMING MAP (all card-hosts at left:40px top:960px width:1000px height:900px)
+  O01  0.0 – 4.0   Intestinal absorption → glucose → blood
+  O02  4.5 – 7.5   Glucose as cell fuel
+  O03  8.0 – 11.5  Glucose channel (closed, no insulin)
+  O04 12.0 – 16.5  Insulin key opens channel, glucose enters
+  O05 17.0 – 20.5  Pancreas secreting insulin keys
+  O06 21.0 – 25.0  Normal balance (scale reaches equilibrium)
+  O07 25.5 – 29.0  Excess glucose accumulating in blood
+  O08 29.5 – 34.0  Hyperinsulinemia — flood of keys from pancreas
+  O09 34.5 – 39.5  Negative effects: inflammation / storage / triglycerides
+  O10 40.0 – 44.0  Channel malfunction — key fails to open
+  O11 44.5 – 49.0  Insulin resistance — full blockade
+-->
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O01  Glucosa absorbida desde el intestino → torrente sanguíneo
+     [0.0 – 4.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o01" data-start="0.0" data-duration="4.0" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Intestinal wall -->
+  <rect x="50" y="60" width="900" height="300" rx="28" fill="#FFF1F2" stroke="#FECACA" stroke-width="4"/>
+  <!-- Mucosa (inner lining) -->
+  <rect x="50" y="295" width="900" height="40" rx="0" fill="#FECACA" opacity="0.85"/>
+  <!-- 8 Villi (finger projections pointing downward) -->
+  <rect x="120" y="335" width="28" height="76" rx="14" fill="#FB7185"/>
+  <rect x="220" y="335" width="28" height="84" rx="14" fill="#FB7185"/>
+  <rect x="320" y="335" width="28" height="72" rx="14" fill="#FB7185"/>
+  <rect x="428" y="335" width="28" height="80" rx="14" fill="#FB7185"/>
+  <rect x="534" y="335" width="28" height="76" rx="14" fill="#FB7185"/>
+  <rect x="638" y="335" width="28" height="80" rx="14" fill="#FB7185"/>
+  <rect x="742" y="335" width="28" height="72" rx="14" fill="#FB7185"/>
+  <rect x="840" y="335" width="28" height="76" rx="14" fill="#FB7185"/>
+  <!-- Blood vessel (lower) -->
+  <rect x="50" y="660" width="900" height="190" rx="26" fill="#FEE2E2" stroke="#EF4444" stroke-width="5"/>
+  <!-- Flow wave inside blood vessel -->
+  <path d="M80 745 Q200 720 320 750 Q440 778 560 745 Q680 718 800 748 Q880 762 950 745"
+        fill="none" stroke="#FECACA" stroke-width="5" opacity="0.8"/>
+  <!-- 5 glucose particles — start at villi tips, will be animated down -->
+  <circle id="o01-g1" cx="134" cy="418" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o01-g2" cx="284" cy="426" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o01-g3" cx="442" cy="422" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o01-g4" cx="598" cy="418" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o01-g5" cx="756" cy="422" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O02  Glucosa como comida celular
+     [4.5 – 7.5 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o02" data-start="4.5" data-duration="3.0" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Cell body -->
+  <ellipse cx="500" cy="470" rx="290" ry="225" fill="#E0F2FE" stroke="#1a2a4a" stroke-width="9"/>
+  <!-- Cell nucleus -->
+  <ellipse cx="500" cy="470" rx="85" ry="72" fill="#BFDBFE" stroke="#1a2a4a" stroke-width="5"/>
+  <!-- 6 glucose particles around cell — will converge inward -->
+  <circle id="o02-g1" cx="500" cy="195" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o02-g2" cx="775" cy="320" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o02-g3" cx="775" cy="620" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o02-g4" cx="500" cy="745" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o02-g5" cx="225" cy="620" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o02-g6" cx="225" cy="320" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <!-- Energy radial lines (hidden, flash when glucose absorbed) -->
+  <line id="o02-r1" x1="500" y1="245" x2="500" y2="165" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r2" x1="740" y1="345" x2="800" y2="275" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r3" x1="770" y1="470" x2="860" y2="470" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r4" x1="740" y1="595" x2="800" y2="665" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r5" x1="500" y1="695" x2="500" y2="775" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r6" x1="260" y1="595" x2="200" y2="665" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r7" x1="230" y1="470" x2="140" y2="470" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <line id="o02-r8" x1="260" y1="345" x2="200" y2="275" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O03  Canal de glucosa cerrado — glucosa esperando sin llave
+     [8.0 – 11.5 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o03" data-start="8.0" data-duration="3.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Extracellular space (top) -->
+  <rect x="50" y="30" width="900" height="370" rx="20" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Intracellular space (bottom) -->
+  <rect x="50" y="510" width="900" height="360" rx="20" fill="#E0F2FE" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Membrane — left segment -->
+  <rect x="50" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="50" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Membrane — right segment -->
+  <rect x="575" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="575" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Channel walls -->
+  <rect x="423" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <rect x="570" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <!-- Lock body (closed channel) -->
+  <rect x="452" y="418" width="96" height="62" rx="10" fill="#1a2a4a"/>
+  <path d="M470 418 A30 30 0 0 1 530 418" fill="none" stroke="#1a2a4a" stroke-width="11" stroke-linecap="round"/>
+  <!-- Keyhole -->
+  <circle cx="500" cy="440" r="12" fill="#EFF6FF"/>
+  <rect x="494" y="440" width="12" height="18" rx="5" fill="#EFF6FF"/>
+  <!-- 5 glucose particles waiting outside (above membrane) -->
+  <circle id="o03-g1" cx="330" cy="340" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o03-g2" cx="400" cy="360" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o03-g3" cx="500" cy="340" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o03-g4" cx="600" cy="360" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o03-g5" cx="670" cy="335" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O04  Insulina (llave) abre el canal — glucosa entra a la célula
+     [12.0 – 16.5 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o04" data-start="12.0" data-duration="4.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Extracellular space -->
+  <rect x="50" y="30" width="900" height="370" rx="20" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Intracellular space -->
+  <rect x="50" y="510" width="900" height="360" rx="20" fill="#E0F2FE" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Membrane left -->
+  <rect x="50" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="50" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Membrane right -->
+  <rect x="575" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="575" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Channel walls -->
+  <rect x="423" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <rect x="570" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <!-- Lock (receptor) — will shrink/fade when opened -->
+  <g id="o04-lock">
+    <rect x="452" y="418" width="96" height="62" rx="10" fill="#1a2a4a"/>
+    <path d="M470 418 A30 30 0 0 1 530 418" fill="none" stroke="#1a2a4a" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="500" cy="440" r="12" fill="#EFF6FF"/>
+    <rect x="494" y="440" width="12" height="18" rx="5" fill="#EFF6FF"/>
+  </g>
+  <!-- Channel open glow (hidden until key engages) -->
+  <rect id="o04-open-glow" x="430" y="418" width="140" height="62" rx="10" fill="#14B8A6" opacity="0"/>
+  <!-- Insulin key (starts at y=220, shaft tip will descend to y=420 to engage lock) -->
+  <g id="o04-key" transform="translate(500,220)">
+    <circle cy="-45" r="22" fill="none" stroke="#14B8A6" stroke-width="7"/>
+    <circle cy="-45" r="9" fill="#14B8A6"/>
+    <line x1="0" y1="-23" x2="0" y2="60" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="16" x2="-18" y2="16" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="38" x2="-18" y2="38" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- 3 glucose particles waiting left of channel, will flow through -->
+  <circle id="o04-g1" cx="350" cy="330" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.85"/>
+  <circle id="o04-g2" cx="390" cy="370" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.85"/>
+  <circle id="o04-g3" cx="310" cy="280" r="18" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.85"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O05  Páncreas secretando insulina al comer
+     [17.0 – 20.5 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o05" data-start="17.0" data-duration="3.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Pancreas body -->
+  <ellipse cx="400" cy="460" rx="240" ry="115" fill="#FDE68A" stroke="#D97706" stroke-width="6"/>
+  <!-- Pancreatic tail -->
+  <path d="M640 440 Q710 400 790 430 Q840 455 815 490 Q790 516 740 508 Q690 498 640 478"
+        fill="#FDE68A" stroke="#D97706" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Islet of Langerhans dots -->
+  <circle cx="360" cy="450" r="18" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <circle cx="440" cy="428" r="14" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <circle cx="420" cy="478" r="13" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <!-- Pulse ring (will scale outward from pancreas when secreting) -->
+  <ellipse id="o05-pulse" cx="400" cy="460" rx="240" ry="115" fill="none" stroke="#14B8A6" stroke-width="5" opacity="0"/>
+  <!-- 9 insulin keys emitted in 3 waves (3 keys per wave) -->
+  <!-- Wave 1 keys -->
+  <g id="o05-k1a" transform="translate(665,432)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="o05-k1b" transform="translate(725,400)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="o05-k1c" transform="translate(768,462)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <!-- Wave 2 keys -->
+  <g id="o05-k2a" transform="translate(820,380)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="o05-k2b" transform="translate(876,455)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="o05-k2c" transform="translate(835,518)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <!-- Wave 3 keys -->
+  <g id="o05-k3a" transform="translate(920,420)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="o05-k3b" transform="translate(950,490)" opacity="0">
+    <circle cy="-26" r="12" fill="none" stroke="#14B8A6" stroke-width="5"/>
+    <circle cy="-26" r="5" fill="#14B8A6"/>
+    <line x1="0" y1="-14" x2="0" y2="34" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="8"  x2="-13" y2="8"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="24" x2="-13" y2="24" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O06  Balance normal — niveles regulados, células bien alimentadas
+     [21.0 – 25.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o06" data-start="21.0" data-duration="4.0" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Scale fulcrum + base -->
+  <line x1="500" y1="670" x2="500" y2="820" stroke="#1a2a4a" stroke-width="12" stroke-linecap="round"/>
+  <rect x="390" y="814" width="220" height="30" rx="15" fill="#1a2a4a"/>
+  <!-- Scale pivot -->
+  <circle cx="500" cy="665" r="14" fill="#14B8A6"/>
+  <!-- Beam (will rock to balance via GSAP rotation) -->
+  <g id="o06-beam" transform-origin="500 665">
+    <!-- Beam bar -->
+    <line x1="180" y1="665" x2="820" y2="665" stroke="#1a2a4a" stroke-width="10" stroke-linecap="round"/>
+    <!-- Left pan strings -->
+    <line x1="200" y1="665" x2="200" y2="555" stroke="#1a2a4a" stroke-width="5"/>
+    <line x1="180" y1="555" x2="220" y2="555" stroke="#1a2a4a" stroke-width="5"/>
+    <!-- Left pan dish -->
+    <path d="M140 555 Q200 530 260 555" fill="none" stroke="#1a2a4a" stroke-width="6" stroke-linecap="round"/>
+    <!-- Right pan strings -->
+    <line x1="800" y1="665" x2="800" y2="555" stroke="#1a2a4a" stroke-width="5"/>
+    <line x1="780" y1="555" x2="820" y2="555" stroke="#1a2a4a" stroke-width="5"/>
+    <!-- Right pan dish -->
+    <path d="M740 555 Q800 530 860 555" fill="none" stroke="#1a2a4a" stroke-width="6" stroke-linecap="round"/>
+    <!-- Left pan contents: 3 glucose particles -->
+    <circle cx="175" cy="543" r="19" fill="#FBBF24" stroke="#D97706" stroke-width="3"/>
+    <circle cx="210" cy="530" r="17" fill="#FBBF24" stroke="#D97706" stroke-width="3"/>
+    <circle cx="228" cy="546" r="16" fill="#FBBF24" stroke="#D97706" stroke-width="3"/>
+    <!-- Right pan contents: insulin key -->
+    <g transform="translate(800,510)">
+      <circle cy="-26" r="17" fill="none" stroke="#14B8A6" stroke-width="7"/>
+      <circle cy="-26" r="7" fill="#14B8A6"/>
+      <line x1="0" y1="-9" x2="0" y2="42" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+      <line x1="0" y1="12" x2="-18" y2="12" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+      <line x1="0" y1="30" x2="-18" y2="30" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    </g>
+  </g>
+  <!-- Checkmark / equilibrium indicator (fades in when balanced) -->
+  <path id="o06-check" d="M410 820 L460 870 L590 740" fill="none" stroke="#14B8A6" stroke-width="10"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O07  Exceso de glucosa en sangre — pérdida del balance
+     [25.5 – 29.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o07" data-start="25.5" data-duration="3.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Blood vessel -->
+  <rect x="50" y="250" width="900" height="400" rx="30" fill="#FEE2E2" stroke="#EF4444" stroke-width="6"/>
+  <!-- Inner vessel glow (will intensify) -->
+  <rect id="o07-bg" x="56" y="256" width="888" height="388" rx="26" fill="#FEE2E2"/>
+  <!-- 12 glucose particles (different opacity/size waves — first 5 are "normal", 7 more crowd in) -->
+  <!-- Static layer (already present — low density) -->
+  <circle cx="130" cy="400" r="19" fill="#FBBF24" stroke="#D97706" stroke-width="2" opacity="0.7"/>
+  <circle cx="320" cy="380" r="18" fill="#FBBF24" stroke="#D97706" stroke-width="2" opacity="0.7"/>
+  <circle cx="520" cy="400" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="2" opacity="0.7"/>
+  <circle cx="720" cy="385" r="19" fill="#FBBF24" stroke="#D97706" stroke-width="2" opacity="0.7"/>
+  <circle cx="880" cy="400" r="18" fill="#FBBF24" stroke="#D97706" stroke-width="2" opacity="0.7"/>
+  <!-- Accumulating particles (animated in, more intense color) -->
+  <circle id="o07-a1" cx="200" cy="355" r="22" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o07-a2" cx="400" cy="420" r="22" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o07-a3" cx="600" cy="355" r="22" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o07-a4" cx="800" cy="420" r="22" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o07-a5" cx="140" cy="440" r="20" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0"/>
+  <circle id="o07-a6" cx="440" cy="305" r="21" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0"/>
+  <circle id="o07-a7" cx="700" cy="440" r="21" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0"/>
+  <!-- Warning / overflow indicator -->
+  <circle id="o07-warn" cx="500" cy="450" r="360" fill="none" stroke="#EF4444" stroke-width="5" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O08  Hiperinsulinemia compensatoria — páncreas libera exceso de llaves
+     [29.5 – 34.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o08" data-start="29.5" data-duration="4.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Enlarged pancreas (bigger than O05, more active) -->
+  <ellipse id="o08-panc" cx="350" cy="450" rx="260" ry="130" fill="#FDE68A" stroke="#D97706" stroke-width="7"/>
+  <path d="M610 425 Q690 380 790 415 Q845 440 818 478 Q795 508 740 500 Q685 492 610 470"
+        fill="#FDE68A" stroke="#D97706" stroke-width="6"/>
+  <!-- Islets (more of them) -->
+  <circle cx="290" cy="440" r="20" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <circle cx="370" cy="415" r="16" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <circle cx="400" cy="465" r="15" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <circle cx="320" cy="480" r="13" fill="#F59E0B" stroke="#D97706" stroke-width="3"/>
+  <!-- Pulse ring -->
+  <ellipse id="o08-pulse" cx="350" cy="450" rx="260" ry="130" fill="none" stroke="#14B8A6" stroke-width="6" opacity="0"/>
+  <!-- 12 insulin keys (4 waves × 3 keys), all start hidden then flood outward -->
+  <!-- Wave 1 (close) -->
+  <g id="o08-k1a" transform="translate(640,430)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k1b" transform="translate(700,395)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k1c" transform="translate(735,460)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <!-- Wave 2 (medium) -->
+  <g id="o08-k2a" transform="translate(800,370)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k2b" transform="translate(865,445)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k2c" transform="translate(820,515)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <!-- Wave 3 (far) -->
+  <g id="o08-k3a" transform="translate(910,350)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k3b" transform="translate(960,440)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k3c" transform="translate(930,530)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <!-- Wave 4 (overflow — very far) -->
+  <g id="o08-k4a" transform="translate(200,280)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k4b" transform="translate(100,460)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+  <g id="o08-k4c" transform="translate(200,640)" opacity="0"><circle cy="-22" r="10" fill="none" stroke="#14B8A6" stroke-width="5"/><circle cy="-22" r="4" fill="#14B8A6"/><line x1="0" y1="-12" x2="0" y2="28" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="6"  x2="-11" y2="6"  stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="18" x2="-11" y2="18" stroke="#14B8A6" stroke-width="5" stroke-linecap="round"/></g>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O09  Efectos negativos: inflamación / almacenamiento / triglicéridos
+     [34.5 – 39.5 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o09" data-start="34.5" data-duration="5.0" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- ── Phase 1: Inflammation (flame) ── -->
+  <g id="o09-inflam" opacity="0">
+    <!-- Flame body -->
+    <path d="M500 820 C380 820 260 700 260 580 C260 480 340 440 380 400 C380 460 420 490 460 480
+             C420 420 440 340 500 280 C500 380 540 400 560 440 C600 380 610 300 580 240
+             C660 320 740 420 740 520 C740 660 680 820 500 820 Z"
+          fill="#EF4444" opacity="0.9"/>
+    <!-- Flame inner (hotter) -->
+    <path d="M500 800 C420 800 340 700 340 610 C340 530 390 495 420 465 C420 520 450 540 475 530
+             C450 490 460 430 500 390 C500 450 530 465 545 495 C575 450 580 390 565 355
+             C620 410 680 490 680 575 C680 700 600 800 500 800 Z"
+          fill="#F97316" opacity="0.85"/>
+    <!-- Flame core -->
+    <ellipse cx="500" cy="650" rx="80" ry="90" fill="#FCD34D" opacity="0.9"/>
+    <!-- Heat wave rings -->
+    <ellipse id="o09-hw1" cx="500" cy="450" rx="150" ry="100" fill="none" stroke="#EF4444" stroke-width="4" opacity="0"/>
+    <ellipse id="o09-hw2" cx="500" cy="450" rx="220" ry="150" fill="none" stroke="#F97316" stroke-width="3" opacity="0"/>
+  </g>
+
+  <!-- ── Phase 2: Storage padlock ── -->
+  <g id="o09-lock" opacity="0">
+    <!-- Lock body (rounded rectangle) -->
+    <rect x="320" y="440" width="360" height="300" rx="40" fill="#1a2a4a"/>
+    <!-- Lock shackle (U-shape arc at top) -->
+    <path d="M380 440 L380 340 A120 120 0 0 1 620 340 L620 440"
+          fill="none" stroke="#1a2a4a" stroke-width="36" stroke-linecap="round"/>
+    <!-- Lock shackle inner light (to show it as a loop, not solid) -->
+    <path d="M407 440 L407 355 A93 93 0 0 1 593 355 L593 440"
+          fill="none" stroke="#94A3B8" stroke-width="20" stroke-linecap="round"/>
+    <!-- Keyhole on lock -->
+    <circle cx="500" cy="558" r="42" fill="#EFF6FF" opacity="0.95"/>
+    <path d="M500 558 L480 638 L520 638 Z" fill="#EFF6FF" opacity="0.95"/>
+  </g>
+
+  <!-- ── Phase 3: Fat droplets (triglycerides) ── -->
+  <g id="o09-fat" opacity="0">
+    <!-- Multiple fat droplets accumulating -->
+    <ellipse cx="320" cy="500" rx="90" ry="110" fill="#FEF9C3" stroke="#EAB308" stroke-width="5"/>
+    <ellipse cx="320" cy="500" rx="55" ry="68" fill="#FEF08A" opacity="0.8"/>
+    <ellipse cx="500" cy="530" rx="110" ry="130" fill="#FEF9C3" stroke="#EAB308" stroke-width="6"/>
+    <ellipse cx="500" cy="530" rx="68" ry="82" fill="#FEF08A" opacity="0.8"/>
+    <ellipse cx="680" cy="505" rx="88" ry="108" fill="#FEF9C3" stroke="#EAB308" stroke-width="5"/>
+    <ellipse cx="680" cy="505" rx="53" ry="66" fill="#FEF08A" opacity="0.8"/>
+    <!-- Small satellite drops -->
+    <circle cx="210" cy="420" r="40" fill="#FEF9C3" stroke="#EAB308" stroke-width="4"/>
+    <circle cx="790" cy="440" r="38" fill="#FEF9C3" stroke="#EAB308" stroke-width="4"/>
+    <circle cx="400" cy="680" r="34" fill="#FEF9C3" stroke="#EAB308" stroke-width="4"/>
+    <circle cx="600" cy="690" r="32" fill="#FEF9C3" stroke="#EAB308" stroke-width="4"/>
+  </g>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O10  Canal funcionando mal — llave no abre, señal torpe
+     [40.0 – 44.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o10" data-start="40.0" data-duration="4.0" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Extracellular space -->
+  <rect x="50" y="30" width="900" height="370" rx="20" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Intracellular space -->
+  <rect x="50" y="510" width="900" height="360" rx="20" fill="#E0F2FE" stroke="#BFDBFE" stroke-width="3" opacity="0.6"/>
+  <!-- Membrane left -->
+  <rect x="50" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="50" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Membrane right -->
+  <rect x="575" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="575" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Channel walls -->
+  <rect x="423" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <rect x="570" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <!-- Damaged/rusty receptor (orange-ish, not teal — malfunctioning) -->
+  <rect x="452" y="418" width="96" height="62" rx="10" fill="#92400E" opacity="0.9"/>
+  <path d="M470 418 A30 30 0 0 1 530 418" fill="none" stroke="#78350F" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="500" cy="440" r="12" fill="#FEF3C7"/>
+  <rect x="494" y="440" width="12" height="18" rx="5" fill="#FEF3C7"/>
+  <!-- Blocked / partially-open channel indicator (warning color) -->
+  <rect id="o10-block" x="430" y="418" width="140" height="62" rx="10" fill="#EF4444" opacity="0"/>
+  <!-- Insulin key (teal but will wobble) — starts engaged with receptor -->
+  <g id="o10-key" transform="translate(500,220)">
+    <circle cy="-45" r="22" fill="none" stroke="#14B8A6" stroke-width="7"/>
+    <circle cy="-45" r="9" fill="#14B8A6"/>
+    <line x1="0" y1="-23" x2="0" y2="60" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="16" x2="-18" y2="16" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="38" x2="-18" y2="38" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- Glucose particles piled up, not entering -->
+  <circle cx="340" cy="340" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="390" cy="300" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="420" cy="362" r="19" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="310" cy="275" r="18" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="450" cy="320" r="17" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <!-- Bounce indicator (X marks the spot) -->
+  <path id="o10-x" d="M460 395 L540 475 M540 395 L460 475"
+        fill="none" stroke="#EF4444" stroke-width="8" stroke-linecap="round" opacity="0"/>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     O11  Resistencia a la insulina — bloqueo total
+     [44.5 – 49.0 s]
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="card-host clip" data-card-id="o11" data-start="44.5" data-duration="4.5" data-track-index="2"
+     style="left:40px;top:960px;width:1000px;height:900px;visibility:hidden;opacity:0;">
+<svg width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Extracellular space (red tint — alarm state) -->
+  <rect x="50" y="30" width="900" height="370" rx="20" fill="#FFF1F2" stroke="#FECACA" stroke-width="3" opacity="0.7"/>
+  <!-- Intracellular space (muted) -->
+  <rect x="50" y="510" width="900" height="360" rx="20" fill="#E0F2FE" stroke="#BFDBFE" stroke-width="3" opacity="0.5"/>
+  <!-- Membrane left -->
+  <rect x="50" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="50" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Membrane right -->
+  <rect x="575" y="425" width="375" height="21" rx="5" fill="#1a2a4a"/>
+  <rect x="575" y="452" width="375" height="21" rx="5" fill="#1a2a4a" opacity="0.85"/>
+  <!-- Channel walls -->
+  <rect x="423" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <rect x="570" y="425" width="7" height="48" rx="3" fill="#1a2a4a"/>
+  <!-- Completely blocked receptor (dark red = insulin resistant) -->
+  <rect x="440" y="412" width="120" height="70" rx="10" fill="#7F1D1D"/>
+  <path d="M463 412 A37 37 0 0 1 537 412" fill="none" stroke="#7F1D1D" stroke-width="12" stroke-linecap="round"/>
+  <!-- Large X over channel (the resistance symbol) -->
+  <g id="o11-x">
+    <line x1="455" y1="420" x2="545" y2="480" stroke="#EF4444" stroke-width="12" stroke-linecap="round"/>
+    <line x1="545" y1="420" x2="455" y2="480" stroke="#EF4444" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <!-- Bouncing insulin key -->
+  <g id="o11-key" transform="translate(500,200)">
+    <circle cy="-45" r="22" fill="none" stroke="#14B8A6" stroke-width="7"/>
+    <circle cy="-45" r="9" fill="#14B8A6"/>
+    <line x1="0" y1="-23" x2="0" y2="60" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="16" x2="-18" y2="16" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="38" x2="-18" y2="38" stroke="#14B8A6" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- Glucose overflow — many particles piling up -->
+  <circle cx="200" cy="350" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="260" cy="300" r="20" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="310" cy="360" r="22" fill="#FBBF24" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="360" cy="310" r="20" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="380" cy="365" r="19" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0.9"/>
+  <circle cx="220" cy="255" r="18" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0.9"/>
+  <circle id="o11-a1" cx="640" cy="350" r="22" fill="#F59E0B" stroke="#D97706" stroke-width="3" opacity="0"/>
+  <circle id="o11-a2" cx="700" cy="300" r="20" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0"/>
+  <circle id="o11-a3" cx="750" cy="360" r="22" fill="#EF4444" stroke="#B91C1C" stroke-width="3" opacity="0"/>
+  <!-- Pulsing alarm ring -->
+  <circle id="o11-alarm" cx="500" cy="450" r="280" fill="none" stroke="#EF4444" stroke-width="6" opacity="0"/>
+</svg>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<script src="vendor/gsap.min.js"></script>
+<script>
+(function () {
+  var tl = window.gsap.timeline({ paused: true });
+
+  /* ── helpers ── */
+  function show(id, S) {
+    tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'visible', opacity: 1 }, S);
+  }
+  function hide(id, D, S) {
+    tl.to('.card-host[data-card-id="' + id + '"]', { opacity: 0, duration: 0.35, ease: 'power1.in' }, S + D - 0.35);
+    tl.set('.card-host[data-card-id="' + id + '"]', { visibility: 'hidden', opacity: 0 }, S + D);
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     O01  Intestinal absorption → glucose → blood   (0.0 – 4.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S1 = 0.0;
+  show('o01', S1);
+  /* 5 particles fall sequentially from villi tips to blood vessel (Δy ≈ 250) */
+  ['#o01-g1','#o01-g2','#o01-g3','#o01-g4','#o01-g5'].forEach(function(sel, i) {
+    var t = S1 + 0.3 + i * 0.44;
+    tl.fromTo(sel, { opacity:0, y:0 }, { opacity:1, duration:0.28, ease:'power2.out' }, t);
+    tl.to(sel, { y:270, x: (i%2===0 ? 18 : -18), duration:0.85, ease:'power2.in' }, t + 0.28);
+  });
+  hide('o01', 4.0, S1);
+
+  /* ══════════════════════════════════════════════════════════════
+     O02  Glucose as cell fuel   (4.5 – 7.5 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S2 = 4.5;
+  show('o02', S2);
+  /* 6 glucose particles converge toward cell center (500,470), then energy flash */
+  var g2targets = [
+    { id:'#o02-g1', dx:0,    dy:275 },
+    { id:'#o02-g2', dx:-275, dy:150 },
+    { id:'#o02-g3', dx:-275, dy:-150},
+    { id:'#o02-g4', dx:0,    dy:-275},
+    { id:'#o02-g5', dx:275,  dy:-150},
+    { id:'#o02-g6', dx:275,  dy:150 }
+  ];
+  g2targets.forEach(function(g, i) {
+    var t = S2 + 0.2 + i * 0.18;
+    tl.fromTo(g.id, { opacity:0 }, { opacity:1, duration:0.3, ease:'power2.out' }, t);
+    tl.to(g.id, { x: g.dx * 0.65, y: g.dy * 0.65, opacity:0,
+                  duration:0.85, ease:'power2.in' }, t + 0.3);
+  });
+  /* Energy flash at ~2.4 s into clip */
+  var glows = ['#o02-r1','#o02-r2','#o02-r3','#o02-r4','#o02-r5','#o02-r6','#o02-r7','#o02-r8'];
+  glows.forEach(function(r) {
+    tl.fromTo(r, { opacity:0 }, { opacity:1, duration:0.18 }, S2 + 2.3);
+    tl.to(r, { opacity:0, duration:0.4 }, S2 + 2.5);
+  });
+  hide('o02', 3.0, S2);
+
+  /* ══════════════════════════════════════════════════════════════
+     O03  Closed channel — glucose waiting   (8.0 – 11.5 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S3 = 8.0;
+  show('o03', S3);
+  /* Glucose particles appear and gently pulse (scale) waiting to enter */
+  ['#o03-g1','#o03-g2','#o03-g3','#o03-g4','#o03-g5'].forEach(function(sel, i) {
+    tl.fromTo(sel, { opacity:0, scale:0.5, transformOrigin:'center center' },
+              { opacity:1, scale:1, duration:0.35, ease:'back.out(1.5)' }, S3 + 0.2 + i * 0.22);
+  });
+  /* Pulse (scale breathe) to show "waiting" */
+  ['#o03-g1','#o03-g2','#o03-g3','#o03-g4','#o03-g5'].forEach(function(sel) {
+    tl.to(sel, { scale:1.2, transformOrigin:'center center', duration:0.5, ease:'power1.inOut' }, S3 + 1.8);
+    tl.to(sel, { scale:1.0, duration:0.5, ease:'power1.inOut' }, S3 + 2.3);
+    tl.to(sel, { scale:1.15, duration:0.4, ease:'power1.inOut' }, S3 + 2.8);
+    tl.to(sel, { scale:1.0, duration:0.4, ease:'power1.inOut' }, S3 + 3.2);
+  });
+  hide('o03', 3.5, S3);
+
+  /* ══════════════════════════════════════════════════════════════
+     O04  Insulin key opens channel — glucose flows in   (12.0 – 16.5 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S4 = 12.0;
+  show('o04', S4);
+  /* Key descends from y=220 to receptor (shaft tip lands at ~y=415) — Δy = 195 */
+  tl.to('#o04-key', { y: 195, duration: 1.2, ease: 'power2.inOut' }, S4 + 0.4);
+  /* Small "click" bounce at impact */
+  tl.to('#o04-key', { y: 188, duration: 0.12, ease: 'power2.out' }, S4 + 1.6);
+  tl.to('#o04-key', { y: 195, duration: 0.18, ease: 'bounce.out' }, S4 + 1.72);
+  /* Lock fades out, open-glow fades in */
+  tl.to('#o04-lock',        { opacity: 0, scale: 0.8, transformOrigin: '500px 449px', duration: 0.42, ease: 'power2.in' }, S4 + 1.9);
+  tl.to('#o04-open-glow',   { opacity: 0.55, duration: 0.38, ease: 'power2.out' },  S4 + 2.0);
+  /* Glucose particles flow through channel (rightward and down) */
+  tl.to('#o04-g1', { x: 220, y: 110, opacity: 0, duration: 0.9, ease: 'power2.in' }, S4 + 2.4);
+  tl.to('#o04-g2', { x: 200, y: 80,  opacity: 0, duration: 0.9, ease: 'power2.in' }, S4 + 2.7);
+  tl.to('#o04-g3', { x: 240, y: 150, opacity: 0, duration: 0.9, ease: 'power2.in' }, S4 + 3.0);
+  hide('o04', 4.5, S4);
+
+  /* ══════════════════════════════════════════════════════════════
+     O05  Pancreas secreting insulin keys   (17.0 – 20.5 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S5 = 17.0;
+  show('o05', S5);
+  /* Pancreas pulse ring expands */
+  [0.3, 1.4, 2.5].forEach(function(t) {
+    tl.fromTo('#o05-pulse', { opacity:0.7, scaleX:1, scaleY:1, transformOrigin:'400px 460px' },
+              { opacity:0, scaleX:1.6, scaleY:1.6, duration:0.9, ease:'power1.out' }, S5 + t);
+  });
+  /* Wave 1 keys: appear and drift right */
+  var w1 = ['#o05-k1a','#o05-k1b','#o05-k1c'];
+  w1.forEach(function(k, i) {
+    tl.fromTo(k, { opacity:0, x:0 }, { opacity:1, duration:0.3, ease:'power2.out' }, S5 + 0.3 + i * 0.2);
+    tl.to(k, { x:80, opacity:0, duration:0.7, ease:'power1.in' }, S5 + 0.65 + i * 0.2);
+  });
+  /* Wave 2 keys: appear and drift right */
+  var w2 = ['#o05-k2a','#o05-k2b','#o05-k2c'];
+  w2.forEach(function(k, i) {
+    tl.fromTo(k, { opacity:0, x:0 }, { opacity:1, duration:0.3, ease:'power2.out' }, S5 + 1.4 + i * 0.2);
+    tl.to(k, { x:90, opacity:0, duration:0.7, ease:'power1.in' }, S5 + 1.75 + i * 0.2);
+  });
+  /* Wave 3 keys */
+  var w3 = ['#o05-k3a','#o05-k3b'];
+  w3.forEach(function(k, i) {
+    tl.fromTo(k, { opacity:0, x:0 }, { opacity:1, duration:0.3, ease:'power2.out' }, S5 + 2.5 + i * 0.2);
+    tl.to(k, { x:75, opacity:0, duration:0.6, ease:'power1.in' }, S5 + 2.85 + i * 0.2);
+  });
+  hide('o05', 3.5, S5);
+
+  /* ══════════════════════════════════════════════════════════════
+     O06  Normal balance — scale reaches equilibrium   (21.0 – 25.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S6 = 21.0;
+  show('o06', S6);
+  /* Beam starts tilted (glucose side heavier), rocks to balance */
+  tl.fromTo('#o06-beam', { rotation:-10, transformOrigin:'500px 665px' },
+            { rotation: 0, duration:1.6, ease:'elastic.out(1, 0.4)' }, S6 + 0.5);
+  /* Gentle oscillation around zero */
+  tl.to('#o06-beam', { rotation:2,  transformOrigin:'500px 665px', duration:0.7, ease:'power1.inOut' }, S6 + 2.4);
+  tl.to('#o06-beam', { rotation:-1, transformOrigin:'500px 665px', duration:0.6, ease:'power1.inOut' }, S6 + 3.1);
+  tl.to('#o06-beam', { rotation:0,  transformOrigin:'500px 665px', duration:0.5, ease:'power1.inOut' }, S6 + 3.7);
+  /* Checkmark fades in to confirm equilibrium */
+  tl.fromTo('#o06-check', { opacity:0, scale:0.7, transformOrigin:'500px 805px' },
+            { opacity:1, scale:1, duration:0.5, ease:'back.out(2)' }, S6 + 2.1);
+  hide('o06', 4.0, S6);
+
+  /* ══════════════════════════════════════════════════════════════
+     O07  Excess glucose accumulating   (25.5 – 29.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S7 = 25.5;
+  show('o07', S7);
+  /* Background vessel fills with red tint */
+  tl.to('#o07-bg', { fill:'#FECACA', duration:2.5, ease:'power1.in' }, S7 + 0.5);
+  /* Wave of new particles appearing in sequence */
+  var o7wave1 = ['#o07-a1','#o07-a2','#o07-a3','#o07-a4'];
+  o7wave1.forEach(function(sel, i) {
+    tl.fromTo(sel, { opacity:0, scale:0.6, transformOrigin:'center center' },
+              { opacity:1, scale:1, duration:0.4, ease:'back.out(1.5)' }, S7 + 0.4 + i * 0.4);
+  });
+  /* Red/intense particles — denser crowd */
+  var o7wave2 = ['#o07-a5','#o07-a6','#o07-a7'];
+  o7wave2.forEach(function(sel, i) {
+    tl.fromTo(sel, { opacity:0, scale:0.5, transformOrigin:'center center' },
+              { opacity:1, scale:1, duration:0.4, ease:'back.out(2)' }, S7 + 1.8 + i * 0.35);
+  });
+  /* Alarm ring pulses */
+  tl.fromTo('#o07-warn', { opacity:0, scale:0.5, transformOrigin:'500px 450px' },
+            { opacity:0.5, scale:1, duration:0.6, ease:'power2.out' }, S7 + 2.6);
+  tl.to('#o07-warn', { opacity:0, scale:1.3, duration:0.6, ease:'power1.in' }, S7 + 3.0);
+  hide('o07', 3.5, S7);
+
+  /* ══════════════════════════════════════════════════════════════
+     O08  Hyperinsulinemia — flood of keys   (29.5 – 34.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S8 = 29.5;
+  show('o08', S8);
+  /* Pancreas pulse rings (3 rapid pulses) */
+  [0.3, 1.2, 2.1, 3.0].forEach(function(t) {
+    tl.fromTo('#o08-pulse', { opacity:0.8, scaleX:1, scaleY:1, transformOrigin:'350px 450px' },
+              { opacity:0, scaleX:1.8, scaleY:1.8, duration:0.75, ease:'power1.out' }, S8 + t);
+  });
+  /* Pancreas slightly grows */
+  tl.to('#o08-panc', { scaleX:1.1, scaleY:1.1, transformOrigin:'350px 450px', duration:1.0, ease:'power2.out' }, S8 + 0.2);
+  /* Keys flood out in 4 waves, each further and more keys */
+  var allWaveKeys = [
+    { keys:['#o08-k1a','#o08-k1b','#o08-k1c'], t:0.3, dx:50,  dy:0   },
+    { keys:['#o08-k2a','#o08-k2b','#o08-k2c'], t:1.1, dx:90,  dy:0   },
+    { keys:['#o08-k3a','#o08-k3b','#o08-k3c'], t:1.9, dx:130, dy:0   },
+    { keys:['#o08-k4a','#o08-k4b','#o08-k4c'], t:2.8, dx:0,   dy:-90 }
+  ];
+  allWaveKeys.forEach(function(wave) {
+    wave.keys.forEach(function(k, i) {
+      tl.fromTo(k, { opacity:0 }, { opacity:1, duration:0.28, ease:'power2.out' }, S8 + wave.t + i * 0.15);
+      tl.to(k, { x: wave.dx + (i - 1) * 25, y: wave.dy + (i - 1) * 25, opacity:0,
+                 duration:0.9, ease:'power1.in' }, S8 + wave.t + 0.3 + i * 0.15);
+    });
+  });
+  hide('o08', 4.5, S8);
+
+  /* ══════════════════════════════════════════════════════════════
+     O09  Negative effects — 3 sequential icons   (34.5 – 39.5 s)
+     Phase 1: Inflammation (0 – 1.8 s)
+     Phase 2: Storage padlock (1.8 – 3.4 s)
+     Phase 3: Triglyceride droplets (3.4 – 5.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S9 = 34.5;
+  show('o09', S9);
+  /* Phase 1 — flame appears, heat waves pulse */
+  tl.fromTo('#o09-inflam', { opacity:0, scale:0.6, transformOrigin:'500px 550px' },
+            { opacity:1, scale:1, duration:0.55, ease:'back.out(1.3)' }, S9 + 0.2);
+  tl.fromTo('#o09-hw1', { opacity:0.7, scaleX:1, scaleY:1, transformOrigin:'500px 450px' },
+            { opacity:0, scaleX:1.5, scaleY:1.5, duration:0.7, ease:'power1.out' }, S9 + 0.5);
+  tl.fromTo('#o09-hw2', { opacity:0.5, scaleX:1, scaleY:1, transformOrigin:'500px 450px' },
+            { opacity:0, scaleX:1.6, scaleY:1.6, duration:0.8, ease:'power1.out' }, S9 + 0.9);
+  tl.fromTo('#o09-hw1', { opacity:0.6, scaleX:1, scaleY:1, transformOrigin:'500px 450px' },
+            { opacity:0, scaleX:1.5, scaleY:1.5, duration:0.7, ease:'power1.out' }, S9 + 1.3);
+  tl.to('#o09-inflam', { opacity:0, scale:0.85, transformOrigin:'500px 550px', duration:0.4, ease:'power2.in' }, S9 + 1.65);
+  /* Phase 2 — padlock appears */
+  tl.fromTo('#o09-lock', { opacity:0, scale:0.5, transformOrigin:'500px 590px' },
+            { opacity:1, scale:1, duration:0.55, ease:'back.out(1.5)' }, S9 + 2.0);
+  tl.to('#o09-lock', { opacity:0, scale:0.85, transformOrigin:'500px 590px', duration:0.4, ease:'power2.in' }, S9 + 3.1);
+  /* Phase 3 — fat droplets appear */
+  tl.fromTo('#o09-fat', { opacity:0, scale:0.6, transformOrigin:'500px 550px' },
+            { opacity:1, scale:1, duration:0.6, ease:'back.out(1.3)' }, S9 + 3.5);
+  hide('o09', 5.0, S9);
+
+  /* ══════════════════════════════════════════════════════════════
+     O10  Channel malfunction — key fails to open   (40.0 – 44.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S10 = 40.0;
+  show('o10', S10);
+  /* Key descends partially, stops short of engaging */
+  tl.to('#o10-key', { y:160, duration:0.9, ease:'power2.inOut' }, S10 + 0.4);
+  /* Key wobbles (rotation back and forth — signal is "torpe") */
+  tl.to('#o10-key', { rotation: 12, transformOrigin:'500px 280px', duration:0.22, ease:'power2.inOut' }, S10 + 1.4);
+  tl.to('#o10-key', { rotation:-12, transformOrigin:'500px 280px', duration:0.22, ease:'power2.inOut' }, S10 + 1.62);
+  tl.to('#o10-key', { rotation: 8,  transformOrigin:'500px 280px', duration:0.2,  ease:'power2.inOut' }, S10 + 1.84);
+  tl.to('#o10-key', { rotation:-8,  transformOrigin:'500px 280px', duration:0.2,  ease:'power2.inOut' }, S10 + 2.04);
+  tl.to('#o10-key', { rotation: 0,  transformOrigin:'500px 280px', duration:0.3,  ease:'power2.out'   }, S10 + 2.24);
+  /* Key retreats slightly (fails to engage) */
+  tl.to('#o10-key', { y:120, duration:0.5, ease:'power2.out' }, S10 + 2.6);
+  /* X indicator briefly flashes on channel */
+  tl.fromTo('#o10-x', { opacity:0 }, { opacity:1, duration:0.25 }, S10 + 2.6);
+  tl.to('#o10-x', { opacity:0, duration:0.35 }, S10 + 3.0);
+  tl.fromTo('#o10-block', { opacity:0 }, { opacity:0.4, duration:0.3 }, S10 + 2.6);
+  tl.to('#o10-block', { opacity:0, duration:0.4 }, S10 + 3.0);
+  /* Second attempt — wobble again */
+  tl.to('#o10-key', { y:160, duration:0.7, ease:'power2.inOut' }, S10 + 3.1);
+  tl.to('#o10-key', { rotation: 10, transformOrigin:'500px 280px', duration:0.2 }, S10 + 3.8);
+  tl.to('#o10-key', { rotation:-10, transformOrigin:'500px 280px', duration:0.2 }, S10 + 4.0);
+  hide('o10', 4.0, S10);
+
+  /* ══════════════════════════════════════════════════════════════
+     O11  Insulin resistance — full blockade   (44.5 – 49.0 s)
+     ══════════════════════════════════════════════════════════════ */
+  var S11 = 44.5;
+  show('o11', S11);
+  /* X on channel appears with scale-in */
+  tl.fromTo('#o11-x', { scale:0, transformOrigin:'500px 450px' },
+            { scale:1, duration:0.55, ease:'back.out(2)' }, S11 + 0.3);
+  /* Key descends toward channel, hits barrier and bounces back */
+  tl.to('#o11-key', { y:195, duration:0.9, ease:'power2.inOut' }, S11 + 0.6);
+  tl.to('#o11-key', { y:120, duration:0.5, ease:'power2.out'   }, S11 + 1.5);
+  /* Second bounce */
+  tl.to('#o11-key', { y:175, duration:0.6, ease:'power2.inOut' }, S11 + 2.1);
+  tl.to('#o11-key', { y:100, duration:0.5, ease:'power2.out'   }, S11 + 2.7);
+  /* Additional glucose particles overflow (appear) */
+  tl.fromTo('#o11-a1', { opacity:0, scale:0.6, transformOrigin:'640px 350px' },
+            { opacity:1, scale:1, duration:0.35, ease:'back.out(1.5)' }, S11 + 1.2);
+  tl.fromTo('#o11-a2', { opacity:0, scale:0.6, transformOrigin:'700px 300px' },
+            { opacity:1, scale:1, duration:0.35, ease:'back.out(1.5)' }, S11 + 1.6);
+  tl.fromTo('#o11-a3', { opacity:0, scale:0.6, transformOrigin:'750px 360px' },
+            { opacity:1, scale:1, duration:0.35, ease:'back.out(1.5)' }, S11 + 2.0);
+  /* Alarm ring pulses twice */
+  tl.fromTo('#o11-alarm', { opacity:0, scale:0.6, transformOrigin:'500px 450px' },
+            { opacity:0.55, scale:1, duration:0.55, ease:'power2.out' }, S11 + 1.8);
+  tl.to('#o11-alarm', { opacity:0, scale:1.3, duration:0.6, ease:'power1.in' }, S11 + 2.35);
+  tl.fromTo('#o11-alarm', { opacity:0, scale:0.7, transformOrigin:'500px 450px' },
+            { opacity:0.45, scale:1, duration:0.5, ease:'power2.out' }, S11 + 3.2);
+  tl.to('#o11-alarm', { opacity:0, scale:1.25, duration:0.55, ease:'power1.in' }, S11 + 3.7);
+  hide('o11', 4.5, S11);
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines['docpablo-insulin-resistance-gs'] = tl;
+}());
+</script>
+</div>
+</body>
+</html>

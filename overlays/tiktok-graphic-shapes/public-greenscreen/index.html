@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #FF00FF;
+    }
+
+    .card-host {
+      position: absolute;
+      pointer-events: none;
+      overflow: visible;
+    }
+  </style>
+</head>
+<body>
+<div
+  id="stage"
+  data-composition-id="docpablo-shapes-gs"
+  data-start="0"
+  data-duration="19.5"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+  style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#FF00FF;"
+>
+
+  <!-- ── GRAPHIC 1: Pulse Sonar [0.0 – 3.5s] ── -->
+  <!-- 3 concentric rings pulse outward from a medical-cross center -->
+  <div class="card-host clip" data-card-id="g01" data-start="0.0" data-duration="3.5" data-track-index="2"
+       style="left:90px;top:510px;width:900px;height:900px;visibility:hidden;opacity:0;">
+    <svg width="900" height="900" viewBox="0 0 900 900">
+      <!-- Pulse rings: start at center radius, expand & fade via GSAP attr -->
+      <circle id="g01-r1" cx="450" cy="450" r="90" fill="none" stroke="#4DB89A" stroke-width="5" opacity="0"/>
+      <circle id="g01-r2" cx="450" cy="450" r="90" fill="none" stroke="#4DB89A" stroke-width="5" opacity="0"/>
+      <circle id="g01-r3" cx="450" cy="450" r="90" fill="none" stroke="#4DB89A" stroke-width="5" opacity="0"/>
+      <!-- Static center filled circle -->
+      <circle cx="450" cy="450" r="90" fill="#4DB89A"/>
+      <!-- White medical cross -->
+      <rect x="430" y="380" width="40" height="140" rx="8" fill="white"/>
+      <rect x="380" y="430" width="140" height="40" rx="8" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- ── GRAPHIC 2: Bar Equalizer [4.0 – 7.5s] ── -->
+  <!-- 5 bars cycle through 4 height-state presets -->
+  <div class="card-host clip" data-card-id="g02" data-start="4.0" data-duration="3.5" data-track-index="2"
+       style="left:90px;top:510px;width:900px;height:900px;visibility:hidden;opacity:0;">
+    <svg width="900" height="900" viewBox="0 0 900 900">
+      <!-- Floor line -->
+      <rect x="60" y="790" width="780" height="6" rx="3" fill="#EAF7F2"/>
+      <!-- 5 bars: width=116, gap=59 ← total=(116×5)+(59×4)=580+236=816, left margin=42 -->
+      <!-- bars start at y=790, height=0 (grow upward via attr animation) -->
+      <rect id="g02-b1" x="60"  y="790" width="116" height="0" rx="12" fill="#4DB89A"/>
+      <rect id="g02-b2" x="236" y="790" width="116" height="0" rx="12" fill="#E87C0C"/>
+      <rect id="g02-b3" x="412" y="790" width="116" height="0" rx="12" fill="#4DB89A"/>
+      <rect id="g02-b4" x="588" y="790" width="116" height="0" rx="12" fill="#E87C0C"/>
+      <rect id="g02-b5" x="724" y="790" width="116" height="0" rx="12" fill="#4DB89A"/>
+    </svg>
+  </div>
+
+  <!-- ── GRAPHIC 3: EKG Heartbeat Line [8.0 – 11.5s] ── -->
+  <!-- Stroke-dashoffset draws the waveform twice across the clip duration -->
+  <div class="card-host clip" data-card-id="g03" data-start="8.0" data-duration="3.5" data-track-index="2"
+       style="left:90px;top:510px;width:900px;height:900px;visibility:hidden;opacity:0;">
+    <svg width="900" height="900" viewBox="0 0 900 900">
+      <!-- EKG path: flat → P-wave bump → QRS spike → T-wave → flat -->
+      <path id="g03-ekg"
+            d="M0 450 L130 450 Q165 395 200 450 L255 450 L272 500 L300 60 L328 580 L356 450 Q415 350 470 450 L900 450"
+            fill="none" stroke="#4DB89A" stroke-width="10"
+            stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="2200" stroke-dashoffset="2200"/>
+      <!-- Orange dot travels along the baseline as the line draws -->
+      <circle id="g03-dot" cx="0" cy="450" r="18" fill="#E87C0C" opacity="0"/>
+    </svg>
+  </div>
+
+  <!-- ── GRAPHIC 4: Circular Progress Ring [12.0 – 15.5s] ── -->
+  <!-- Ring fills from 0 to 100%, reveals checkmark, then resets quickly -->
+  <div class="card-host clip" data-card-id="g04" data-start="12.0" data-duration="3.5" data-track-index="2"
+       style="left:90px;top:510px;width:900px;height:900px;visibility:hidden;opacity:0;">
+    <svg width="900" height="900" viewBox="0 0 900 900">
+      <!-- Background track ring -->
+      <circle cx="450" cy="450" r="300" fill="none" stroke="#EAF7F2" stroke-width="44"/>
+      <!-- Progress ring: circumference = 2π×300 ≈ 1885; rotated so fill starts at top -->
+      <circle id="g04-prog" cx="450" cy="450" r="300"
+              fill="none" stroke="#4DB89A" stroke-width="44"
+              stroke-linecap="round"
+              stroke-dasharray="1885" stroke-dashoffset="1885"
+              transform="rotate(-90 450 450)"/>
+      <!-- Checkmark inside ring -->
+      <path id="g04-check"
+            d="M310 450 L405 545 L590 360"
+            fill="none" stroke="#4DB89A" stroke-width="18"
+            stroke-linecap="round" stroke-linejoin="round"
+            opacity="0"/>
+    </svg>
+  </div>
+
+  <!-- ── GRAPHIC 5: Arrow Cascade [16.0 – 19.5s] ── -->
+  <!-- 3 upward arrows float up in staggered cycles (3 cycles each) -->
+  <div class="card-host clip" data-card-id="g05" data-start="16.0" data-duration="3.5" data-track-index="2"
+       style="left:90px;top:510px;width:900px;height:900px;visibility:hidden;opacity:0;">
+    <svg width="900" height="900" viewBox="0 0 900 900">
+      <!-- Left arrow (green) -->
+      <g id="g05-a1" opacity="0">
+        <path d="M200 740 L200 310 M130 430 L200 310 L270 430"
+              fill="none" stroke="#4DB89A" stroke-width="20"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <!-- Center arrow (orange, larger) -->
+      <g id="g05-a2" opacity="0">
+        <path d="M450 740 L450 250 M370 400 L450 250 L530 400"
+              fill="none" stroke="#E87C0C" stroke-width="26"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <!-- Right arrow (green) -->
+      <g id="g05-a3" opacity="0">
+        <path d="M700 740 L700 310 M630 430 L700 310 L770 430"
+              fill="none" stroke="#4DB89A" stroke-width="20"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+  (function () {
+    var tl = window.gsap.timeline({ paused: true });
+
+    /* ─────────────────────────────────────────────────────────
+     * GRAPHIC 1: Pulse Sonar   (0.0 → 3.5 s)
+     * 3 rings, staggered 0 / 0.5 / 1.0 s, each pulse repeats
+     * at 1.35 s intervals for the clip's full duration.
+     * ───────────────────────────────────────────────────────── */
+    tl.set('.card-host[data-card-id="g01"]', { visibility: 'visible', opacity: 1 }, 0.0);
+
+    var rings = ['#g01-r1', '#g01-r2', '#g01-r3'];
+    var staggers = [0.0, 0.5, 1.0];
+    staggers.forEach(function (stagger, ri) {
+      /* Each ring fires twice during the 3.5 s clip */
+      [0, 1.35].forEach(function (rep) {
+        var t = stagger + rep;
+        if (t < 3.4) {
+          tl.fromTo(rings[ri],
+            { attr: { r: 90 }, opacity: 0.9 },
+            { attr: { r: 380 }, opacity: 0, duration: 1.25, ease: 'power1.out' },
+            t);
+        }
+      });
+    });
+
+    tl.set('.card-host[data-card-id="g01"]', { visibility: 'hidden', opacity: 0 }, 3.5);
+
+
+    /* ─────────────────────────────────────────────────────────
+     * GRAPHIC 2: Bar Equalizer   (4.0 → 7.5 s)
+     * Bars grow from 0 to state-0, then cycle through 4 height
+     * presets at 0.65 s intervals.
+     * ───────────────────────────────────────────────────────── */
+    var S2 = 4.0;
+    tl.set('.card-host[data-card-id="g02"]', { visibility: 'visible', opacity: 1 }, S2);
+
+    /* Height states – (y = 790 – h) */
+    var states = [
+      [400, 180, 560, 300, 480],  /* state 0 */
+      [240, 510, 200, 540, 160],  /* state 1 */
+      [500, 300, 410, 200, 520],  /* state 2 */
+      [310, 460, 320, 450, 280]   /* state 3 */
+    ];
+    var bars = ['#g02-b1', '#g02-b2', '#g02-b3', '#g02-b4', '#g02-b5'];
+
+    /* Grow in from 0 → state 0 */
+    bars.forEach(function (bar, i) {
+      var h = states[0][i];
+      tl.fromTo(bar,
+        { attr: { y: 790, height: 0 } },
+        { attr: { y: 790 - h, height: h }, duration: 0.48, ease: 'power2.out' },
+        S2);
+    });
+
+    /* Cycle 1→2→3→0→1  (starts 0.5 s in, 0.65 s per step) */
+    [1, 2, 3, 0, 1].forEach(function (si, step) {
+      var t = S2 + 0.5 + step * 0.65;
+      bars.forEach(function (bar, i) {
+        var h = states[si][i];
+        tl.to(bar, { attr: { y: 790 - h, height: h }, duration: 0.55, ease: 'power2.inOut' }, t);
+      });
+    });
+
+    tl.set('.card-host[data-card-id="g02"]', { visibility: 'hidden', opacity: 0 }, S2 + 3.5);
+
+
+    /* ─────────────────────────────────────────────────────────
+     * GRAPHIC 3: EKG Heartbeat Line   (8.0 → 11.5 s)
+     * Waveform draws left-to-right (stroke-dashoffset 2200→0)
+     * in 1.8 s, pauses 0.1 s, then draws again faster (1.4 s).
+     * An orange dot tracks the horizontal baseline simultaneously.
+     * ───────────────────────────────────────────────────────── */
+    var S3 = 8.0;
+    tl.set('.card-host[data-card-id="g03"]', { visibility: 'visible', opacity: 1 }, S3);
+
+    /* First draw */
+    tl.to('#g03-ekg', { attr: { 'stroke-dashoffset': 0 }, duration: 1.8, ease: 'power1.inOut' }, S3);
+    tl.fromTo('#g03-dot', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 900 }, opacity: 1, duration: 1.8, ease: 'power1.inOut' }, S3);
+
+    /* Reset for second draw */
+    tl.set('#g03-ekg', { attr: { 'stroke-dashoffset': 2200 } }, S3 + 1.9);
+    tl.set('#g03-dot', { attr: { cx: 0 } }, S3 + 1.9);
+
+    /* Second draw (faster) */
+    tl.to('#g03-ekg', { attr: { 'stroke-dashoffset': 0 }, duration: 1.5, ease: 'power1.inOut' }, S3 + 2.0);
+    tl.to('#g03-dot', { attr: { cx: 900 }, duration: 1.5, ease: 'power1.inOut' }, S3 + 2.0);
+
+    tl.set('.card-host[data-card-id="g03"]', { visibility: 'hidden', opacity: 0 }, S3 + 3.5);
+
+
+    /* ─────────────────────────────────────────────────────────
+     * GRAPHIC 4: Circular Progress Ring   (12.0 → 15.5 s)
+     * Ring fills (dashoffset 1885→0) over 1.5 s, checkmark
+     * pops in, holds 0.6 s, then ring rewinds quickly (0.4 s)
+     * and fills again for the remainder of the clip.
+     * ───────────────────────────────────────────────────────── */
+    var S4 = 12.0;
+    tl.set('.card-host[data-card-id="g04"]', { visibility: 'visible', opacity: 1 }, S4);
+
+    /* Fill ring */
+    tl.to('#g04-prog', { attr: { 'stroke-dashoffset': 0 }, duration: 1.5, ease: 'power2.inOut' }, S4);
+    /* Reveal checkmark */
+    tl.fromTo('#g04-check',
+      { opacity: 0, scale: 0.6, transformOrigin: '450px 450px' },
+      { opacity: 1, scale: 1, duration: 0.36, ease: 'back.out(1.8)' },
+      S4 + 1.5);
+
+    /* Rewind ring + hide check */
+    tl.to('#g04-prog', { attr: { 'stroke-dashoffset': 1885 }, duration: 0.38, ease: 'power3.in' }, S4 + 2.2);
+    tl.to('#g04-check', { opacity: 0, duration: 0.22 }, S4 + 2.2);
+
+    /* Fill again */
+    tl.to('#g04-prog', { attr: { 'stroke-dashoffset': 0 }, duration: 0.92, ease: 'power2.out' }, S4 + 2.58);
+    tl.to('#g04-check', { opacity: 1, duration: 0.22 }, S4 + 3.3);
+
+    tl.set('.card-host[data-card-id="g04"]', { visibility: 'hidden', opacity: 0 }, S4 + 3.5);
+
+
+    /* ─────────────────────────────────────────────────────────
+     * GRAPHIC 5: Arrow Cascade   (16.0 → 19.5 s)
+     * 3 arrows rise and fade in staggered 1.1 s cycles
+     * (3 full cycles per arrow, each offset by ~0.37 s).
+     * ───────────────────────────────────────────────────────── */
+    var S5 = 16.0;
+    tl.set('.card-host[data-card-id="g05"]', { visibility: 'visible', opacity: 1 }, S5);
+
+    var arrowEls  = ['#g05-a1', '#g05-a2', '#g05-a3'];
+    var arrowOff  = [0.0, 0.37, 0.73];   /* stagger offsets */
+    var cycleDur  = 1.1;
+    var numCycles = 3;
+
+    arrowEls.forEach(function (el, ai) {
+      for (var c = 0; c < numCycles; c++) {
+        var t = S5 + arrowOff[ai] + c * cycleDur;
+        /* Snap back to baseline (invisible — opacity was zeroed by previous cycle's exit) */
+        tl.set(el, { y: 0 }, t);
+        /* Fade in */
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'power2.out', overwrite: 'auto' }, t);
+        /* Float up while fading out */
+        tl.to(el, { y: -240, opacity: 0, duration: 0.80, ease: 'power1.in' }, t + 0.28);
+      }
+    });
+
+    tl.set('.card-host[data-card-id="g05"]', { visibility: 'hidden', opacity: 0 }, S5 + 3.5);
+
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines['docpablo-shapes-gs'] = tl;
+  }());
+  </script>
+</div>
+</body>
+</html>
